@@ -1,5 +1,6 @@
 # Market Management Program
 > Based on [Laravel v9](https://laravel.com)
+> Admin template used [Mazer](https://zuramai.github.io/mazer/demo/index.html)
 
 ## Table of contents
 
