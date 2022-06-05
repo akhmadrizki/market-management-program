@@ -63,7 +63,7 @@ $ php artisan serve
 ### Following are the steps that must be taken in the contribution process
 1. Always pull upstream whenever you want to start developing
 ```sh
-$ git pull origin main
+$ git pull upstream main
 ```
 2. Create a new branch for each developed feature. Example:
 ```sh
