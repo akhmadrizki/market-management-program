@@ -11,6 +11,7 @@
   <link rel="shortcut icon" href="{{asset('assets/images/logo/favicon.svg')}}" type="image/x-icon">
   <link rel="shortcut icon" href="{{asset('assets/images/logo/favicon.png')}}" type="image/png">
 
+  <link rel="stylesheet" href="{{asset('assets/css/pages/simple-datatables.css')}}">
   <link rel="stylesheet" href="{{asset('assets/css/shared/iconly.css')}}">
 
   <style>
@@ -85,8 +86,14 @@
 
             <li class="sidebar-title">Akun</li>
 
-            <li class="sidebar-item">
+            <li class="sidebar-item {{ Request::route()->getName() == 'admin-data.index' ? 'active' : null }}">
+              <a href="{{ route('admin-data.index') }}" class='sidebar-link'>
+                <i class="bi bi-person-badge-fill"></i>
+                <span>Data Admin</span>
+              </a>
+            </li>
 
+            <li class="sidebar-item">
               <form action="{{ route('logout') }}" method="POST">
                 @csrf
                 <button class="btn sidebar-link logout text-white">
@@ -126,7 +133,7 @@
     </div>
   </div>
   <script src="{{asset('assets/js/app.js')}}"></script>
-
+  <script src="{{asset('assets/js/extensions/simple-datatables.js')}}"></script>
 </body>
 
 </html>
