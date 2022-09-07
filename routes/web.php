@@ -3,6 +3,7 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DataAdminController;
+use App\Http\Controllers\Dashboard\DataContractController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,8 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::prefix('/dashboard')->group(function () {
+        Route::get('/data-kontrak', [DataContractController::class, 'index'])->name('kontrak.index');
+        Route::get('/tambah-data-kontrak', [DataContractController::class, 'create'])->name('kontrak.cerate');
         // Route Admin Data
         Route::resource('/admin-data', DataAdminController::class);
     });

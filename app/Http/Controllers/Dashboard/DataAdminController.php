@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\AdminStoreRequest;
+use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class DataAdminController extends Controller
 {
@@ -14,7 +18,8 @@ class DataAdminController extends Controller
      */
     public function index()
     {
-        return view('pages.dashboard.admin.index');
+        $datas = User::where('role_id', '=', 2)->latest()->get();
+        return view('pages.dashboard.admin.index', compact('datas'));
     }
 
     /**
@@ -24,7 +29,7 @@ class DataAdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('pages.dashboard.admin.create');
     }
 
     /**
@@ -33,9 +38,29 @@ class DataAdminController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AdminStoreRequest $request)
     {
-        //
+        try {
+            $validated = $request->safe()->only(['contact']);
+
+            $fields = [
+                'username' => strtolower($request->username),
+                'name'     => $request->name,
+                'contact'  => $validated['contact'],
+                'address'  => $request->address,
+                'role_id'  => 2,
+                'password' => Hash::make('admin123#')
+            ];
+
+            User::create($fields);
+
+            return redirect()->route('admin-data.index')->with([
+                'message' => 'Data admin berhasil ditambahkan',
+                'status'  => 'success',
+            ]);
+        } catch (Exception $error) {
+            return redirect()->route('admin-data.create')->with('message', $error->getMessage());
+        }
     }
 
     /**

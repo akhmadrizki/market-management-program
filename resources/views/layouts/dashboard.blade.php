@@ -13,6 +13,9 @@
 
   <link rel="stylesheet" href="{{asset('assets/css/pages/simple-datatables.css')}}">
   <link rel="stylesheet" href="{{asset('assets/css/shared/iconly.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/css/pages/form-element-select.css')}}">
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
   <style>
     .logout {
@@ -25,6 +28,8 @@
       background-color: #df404d !important;
     }
   </style>
+
+  @yield('additional-css')
 
 </head>
 
@@ -84,12 +89,26 @@
               </a>
             </li>
 
+            <li class="sidebar-item {{ Request::route()->getName() == 'kontrak.index' ? 'active' : null }}"">
+              <a href=" {{ route('kontrak.index') }}" class='sidebar-link'>
+              <i class="bi bi-file-earmark-text-fill"></i>
+              <span>Data Kontrak</span>
+              </a>
+            </li>
+
             <li class="sidebar-title">Akun</li>
 
             <li class="sidebar-item {{ Request::route()->getName() == 'admin-data.index' ? 'active' : null }}">
               <a href="{{ route('admin-data.index') }}" class='sidebar-link'>
                 <i class="bi bi-person-badge-fill"></i>
                 <span>Data Admin</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a href="#" class='sidebar-link'>
+                <i class="bi bi-person-lines-fill"></i>
+                <span>Data Pedagang</span>
               </a>
             </li>
 
@@ -134,6 +153,10 @@
   </div>
   <script src="{{asset('assets/js/app.js')}}"></script>
   <script src="{{asset('assets/js/extensions/simple-datatables.js')}}"></script>
+  <script src="{{asset('assets/js/extensions/form-element-select.js')}}"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+  @yield('js')
 </body>
 
 </html>
