@@ -45,8 +45,14 @@ Data Admin
             <td>{{ $data->contact }}</td>
             <td>
             <td>
-              <a href="#" class="btn btn-sm btn-warning" title="Edit"><i class="bi bi-pencil-square"></i></a>
-              <a href="#" class="btn btn-sm btn-danger" title="Hapus"><i class="bi bi-trash3-fill"></i></i></a>
+              <a href="{{ route('admin-data.edit', $data->id) }}" class="btn btn-sm btn-warning" title="Edit"><i
+                  class="bi bi-pencil-square"></i></a>
+              {{-- <a href="#" class="btn btn-sm btn-danger" title="Hapus"><i class="bi bi-trash3-fill"></i></a> --}}
+
+              <button type="button" class="btn btn-sm btn-danger block" data-bs-toggle="modal"
+                data-bs-target="#delete-{{ $data->id }}">
+                <i class="bi bi-trash3-fill"></i>
+              </button>
             </td>
             </td>
           </tr>
@@ -57,6 +63,42 @@ Data Admin
   </div>
 
 </section>
+@endsection
+
+@section('modal')
+@foreach ($datas as $data)
+<div class="modal fade text-left" id="delete-{{ $data->id }}" tabindex="-1" role="dialog"
+  aria-labelledby="myModalLabel4" data-bs-backdrop="false" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4 class="modal-title" id="myModalLabel4">Hapus Data {{ $data->name }}</h4>
+        <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+          <i data-feather="x"></i>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Apakah anda yakin ingin menghapus data <b>{{ $data->name }} ?</b></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+          <i class="bx bx-x d-block d-sm-none"></i>
+          <span class="d-none d-sm-block">Close</span>
+        </button>
+
+        <form action="{{ route('admin-data.destroy', $data->id) }}" method="POST">
+          @method('DELETE')
+          @csrf
+          <button type="submit" class="btn btn-primary ml-1" data-bs-dismiss="modal">
+            <i class="bx bx-check d-block d-sm-none"></i>
+            <span class="d-none d-sm-block">Delete</span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+@endforeach
 @endsection
 
 @section('js')
