@@ -15,6 +15,58 @@ Dashboard
 <div class="page-content">
   <section class="row">
     <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-4">
+              <div class="form-group">
+                <label for="email-id-icon">Harian</label>
+                <input type="date" class="form-control">
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="form-group">
+                <label for="email-id-icon">Bulanan</label>
+                <select class="form-select">
+                  <option value="none" selected disabled>- Pilih Bulan -</option>
+                  <option value="january">Januari</option>
+                  <option value="february">Februari</option>
+                  <option value="march">Maret</option>
+                  <option value="april">April</option>
+                  <option value="may">Mei</option>
+                  <option value="june">Juni</option>
+                  <option value="july">Juli</option>
+                  <option value="august">Agustus</option>
+                  <option value="september">September</option>
+                  <option value="october">Oktober</option>
+                  <option value="november">November</option>
+                  <option value="december">Desember</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-4">
+              <div class="form-group">
+                <label for="email-id-icon">Tahunan</label>
+                <select class="form-select">
+                  <option>IT</option>
+                  <option>Blade Runner</option>
+                  <option>Thor Ragnarok</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-12 d-flex justify-content-center">
+              <button type="button" class="btn btn-primary me-1 mb-1">Terapkan</button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-12">
       <div class="row">
         <div class="col-6 col-lg-3 col-md-6">
           <div class="card">

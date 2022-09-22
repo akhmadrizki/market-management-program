@@ -47,7 +47,6 @@ Data Admin
             <td>
               <a href="{{ route('admin-data.edit', $data->id) }}" class="btn btn-sm btn-warning" title="Edit"><i
                   class="bi bi-pencil-square"></i></a>
-              {{-- <a href="#" class="btn btn-sm btn-danger" title="Hapus"><i class="bi bi-trash3-fill"></i></a> --}}
 
               <button type="button" class="btn btn-sm btn-danger block" data-bs-toggle="modal"
                 data-bs-target="#delete-{{ $data->id }}">
