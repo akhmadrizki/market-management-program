@@ -128,7 +128,7 @@ class DataAdminController extends Controller
                 'status'  => 'success',
             ]);
         } catch (Exception $error) {
-            return redirect()->route('admin-data.edit')->with('message', $error->getMessage());
+            return redirect()->route('admin-data.index')->with('message', $error->getMessage());
         }
     }
 

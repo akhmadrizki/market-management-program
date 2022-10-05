@@ -1,13 +1,13 @@
 @extends('layouts.dashboard')
 @section('title')
-Jenis Ruko
+Data Pedagang
 @endsection
 
 @section('content')
 <div class="page-heading">
     <div class="row">
         <div class="col-12 col-md-6 order-md-1 order-last">
-            <h3>Data Ruko</h3>
+            <h3>Data Pedagang</h3>
         </div>
     </div>
 </div>
@@ -15,28 +15,32 @@ Jenis Ruko
 <section class="section">
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('jenis-pasar.create') }}" class="btn btn-sm btn-primary">
-                <span>Buat Jenis Ruko Baru</span>
+            <a href="{{ route('pedagang.create') }}" class="btn btn-sm btn-primary">
+                <span>Tambah Data Pedagang Baru</span>
             </a>
         </div>
         <div class="card-body">
             <table class="table table-striped" id="table1">
                 <thead>
                     <tr>
-                        <th>Jenis Ruko</th>
+                        <th>Nama Pedagang</th>
+                        <th>Contact</th>
+                        <th>Alamat</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($rukos as $ruko)
+                    @foreach ($penyewas as $penyewa)
                     <tr>
-                        <td class="text-capitalize">{{ $ruko->name }}</td>
+                        <td>{{ $penyewa->name }}</td>
+                        <td>{{ $penyewa->contact }}</td>
+                        <td>{{ $penyewa->address }}</td>
                         <td>
-                            <a href="{{ route('jenis-pasar.edit', $ruko->id) }}" class="btn btn-sm btn-warning"
+                            <a href="{{ route('pedagang.edit', $penyewa->id) }}" class="btn btn-sm btn-warning"
                                 title="Edit"><i class="bi bi-pencil-square"></i></a>
 
                             <button type="button" class="btn btn-sm btn-danger block" data-bs-toggle="modal"
-                                data-bs-target="#delete-{{ $ruko->id }}">
+                                data-bs-target="#delete-{{ $penyewa->id }}">
                                 <i class="bi bi-trash3-fill"></i>
                             </button>
                         </td>
@@ -51,19 +55,19 @@ Jenis Ruko
 @endsection
 
 @section('modal')
-@foreach ($rukos as $ruko)
-<div class="modal fade text-left" id="delete-{{ $ruko->id }}" tabindex="-1" role="dialog"
+@foreach ($penyewas as $penyewa)
+<div class="modal fade text-left" id="delete-{{ $penyewa->id }}" tabindex="-1" role="dialog"
     aria-labelledby="myModalLabel4" data-bs-backdrop="false" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title" id="myModalLabel4">Hapus Data {{ $ruko->name }}</h4>
+                <h4 class="modal-title" id="myModalLabel4">Hapus Data {{ $penyewa->name }}</h4>
                 <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
                     <i data-feather="x"></i>
                 </button>
             </div>
             <div class="modal-body">
-                <p>Apakah anda yakin ingin menghapus data <b>{{ $ruko->name }} ?</b></p>
+                <p>Apakah anda yakin ingin menghapus data <b>{{ $penyewa->name }} ?</b></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
@@ -71,7 +75,7 @@ Jenis Ruko
                     <span class="d-none d-sm-block">Close</span>
                 </button>
 
-                <form action="{{ route('jenis-pasar.destroy', $ruko->id) }}" method="POST">
+                <form action="{{ route('pedagang.destroy', $penyewa->id) }}" method="POST">
                     @method('DELETE')
                     @csrf
                     <button type="submit" class="btn btn-primary ml-1" data-bs-dismiss="modal">

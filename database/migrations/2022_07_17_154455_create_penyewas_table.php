@@ -15,8 +15,9 @@ return new class extends Migration
     {
         Schema::create('penyewas', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
+            $table->string('name')->unique();
             $table->char('contact', 15)->nullable();
+            $table->string('address')->nullable();
             $table->timestamps();
         });
     }

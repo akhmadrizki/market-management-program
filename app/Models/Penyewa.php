@@ -13,5 +13,6 @@ class Penyewa extends Model
     protected $fillable = [
         'name',
         'contact',
+        'address',
     ];
 }

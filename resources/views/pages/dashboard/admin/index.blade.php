@@ -13,13 +13,6 @@ Data Admin
 </div>
 
 <section class="section">
-  {{-- @if (session('message'))
-  <div class="alert alert-{{ session('status') }} alert-dismissible fade show" role="alert">
-    {{ session('message') }}
-    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-  </div>
-  @endif --}}
-
   <div class="card">
     <div class="card-header">
       <a href="{{ route('admin-data.create') }}" class="btn btn-sm btn-primary">
@@ -109,7 +102,9 @@ Data Admin
         close: true,
         gravity: "top", // `top` or `bottom`
         positionLeft: false, // `true` or `false`
-        backgroundColor: "linear-gradient(to right, #00b09b, #96c93d)",
+        backgroundColor: `{{ 
+            session('status') == 'success' ? 'linear-gradient(to right, #00b09b, #96c93d)' : 'linear-gradient(to right, #FF5F6D, #FFC371)' 
+          }}`,
         }).showToast();
   @endif
 </script>

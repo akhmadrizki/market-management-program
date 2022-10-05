@@ -98,7 +98,7 @@
                 <i class="bi bi-journal-bookmark-fill"></i>
                 <span>Data Kontrak</span>
               </a>
-              <ul class="submenu {{ $route == 'kontrak.index' || $route == 'dashboard' ? 'active' : null }}">
+              <ul class="submenu active">
                 <li class="submenu-item {{ $route == 'kontrak.index' ? 'active' : null }}">
                   <a href="{{ route('kontrak.index') }}">Daftar Kontrak</a>
                 </li>
@@ -117,8 +117,8 @@
               </a>
             </li>
 
-            <li class="sidebar-item">
-              <a href="#" class='sidebar-link'>
+            <li class="sidebar-item {{ Request::route()->getName() == 'pedagang.index' ? 'active' : null }}">
+              <a href="{{ route('pedagang.index') }}" class='sidebar-link'>
                 <i class="bi bi-person-lines-fill"></i>
                 <span>Data Pedagang</span>
               </a>
