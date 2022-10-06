@@ -73,7 +73,7 @@
               </svg>
             </div>
 
-            <div class="sidebar-toggler  x">
+            <div class="sidebar-toggler x">
               <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
             </div>
           </div>
@@ -106,6 +106,13 @@
                   <a href="layout-vertical-1-column.html">Pembayaran</a>
                 </li>
               </ul>
+            </li>
+
+            <li class="sidebar-item {{ $route == 'pengeluaran.index' ? 'active' : null }}">
+              <a href="{{ route('pengeluaran.index') }}" class='sidebar-link'>
+                <i class="bi bi-wallet2"></i>
+                <span>Pengeluaran</span>
+              </a>
             </li>
 
             <li class="sidebar-title">Pasar</li>

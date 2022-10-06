@@ -30,18 +30,18 @@ Dashboard
                 <label for="email-id-icon">Bulanan</label>
                 <select class="form-select">
                   <option value="none" selected disabled>- Pilih Bulan -</option>
-                  <option value="january">Januari</option>
-                  <option value="february">Februari</option>
-                  <option value="march">Maret</option>
-                  <option value="april">April</option>
-                  <option value="may">Mei</option>
-                  <option value="june">Juni</option>
-                  <option value="july">Juli</option>
-                  <option value="august">Agustus</option>
-                  <option value="september">September</option>
-                  <option value="october">Oktober</option>
-                  <option value="november">November</option>
-                  <option value="december">Desember</option>
+                  <option value="01">Januari</option>
+                  <option value="02">Februari</option>
+                  <option value="03">Maret</option>
+                  <option value="04">April</option>
+                  <option value="05">Mei</option>
+                  <option value="06">Juni</option>
+                  <option value="07">Juli</option>
+                  <option value="08">Agustus</option>
+                  <option value="09">September</option>
+                  <option value="10">Oktober</option>
+                  <option value="11">November</option>
+                  <option value="12">Desember</option>
                 </select>
               </div>
             </div>
@@ -50,6 +50,7 @@ Dashboard
               <div class="form-group">
                 <label for="email-id-icon">Tahunan</label>
                 <select class="form-select">
+                  <option value="none" selected disabled>- Pilih Tahun -</option>
                   <option>IT</option>
                   <option>Blade Runner</option>
                   <option>Thor Ragnarok</option>

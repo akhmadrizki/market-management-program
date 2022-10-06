@@ -10,13 +10,21 @@
 
       <form method="POST" action="{{ route('login') }}">
         @csrf
-        <div class="form-group position-relative has-icon-left my-4">
-          <input type="text" class="form-control form-control-xl" name="username" placeholder="Username" required
-            autofocus>
+
+        @error('username')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
+        <div class="form-group position-relative has-icon-left">
+          <input type="text" class="form-control @error('username') is-invalid @enderror form-control-xl"
+            name="username" placeholder="Username" required autofocus>
           <div class="form-control-icon">
             <i class="bi bi-person"></i>
           </div>
         </div>
+
+        @error('password')
+        <span class="text-danger">{{ $message }}</span>
+        @enderror
         <div class="form-group position-relative has-icon-left mb-4">
           <input type="password" name="password" class="form-control form-control-xl" placeholder="Password">
           <div class="form-control-icon">

@@ -27,7 +27,6 @@ Data Kontrak
             <th>Jenis</th>
             <th>Nomor Toko</th>
             <th>Jenis Kontrak</th>
-            <th>Durasi</th>
             <th>Biaya Sewa</th>
             <th>Status</th>
             <th>Aksi</th>
@@ -39,7 +38,6 @@ Data Kontrak
             <td>Pasar Senggol</td>
             <td>3</td>
             <td>Bulanan</td>
-            <td>1</td>
             <td>Rp300.000</td>
             <td>
               <span class="badge bg-info">Active</span>

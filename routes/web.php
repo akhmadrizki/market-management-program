@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\DataAdminController;
 use App\Http\Controllers\Dashboard\DataContractController;
 use App\Http\Controllers\Dashboard\DataPenyewaController;
 use App\Http\Controllers\Dashboard\JenisPasarController;
+use App\Http\Controllers\Dashboard\PengeluaranController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -39,6 +40,9 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('/dashboard')->group(function () {
         Route::get('/data-kontrak', [DataContractController::class, 'index'])->name('kontrak.index');
         Route::get('/tambah-data-kontrak', [DataContractController::class, 'create'])->name('kontrak.cerate');
+
+        // Route Pengeluaran
+        Route::resource('/pengeluaran', PengeluaranController::class);
 
         // Route Admin Data
         Route::resource('/admin-data', DataAdminController::class);

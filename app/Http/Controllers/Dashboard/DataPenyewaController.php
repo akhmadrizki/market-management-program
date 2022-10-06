@@ -56,7 +56,7 @@ class DataPenyewaController extends Controller
         } catch (Exception $error) {
             DB::rollBack();
 
-            return redirect()->route('pedagang.create')->with('message', $error->getMessage());
+            return redirect()->route('pedagang.index')->with('message', $error->getMessage());
         }
     }
 
