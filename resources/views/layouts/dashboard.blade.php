@@ -13,6 +13,9 @@
 
   <link rel="stylesheet" href="{{asset('assets/css/pages/simple-datatables.css')}}">
   <link rel="stylesheet" href="{{asset('assets/css/shared/iconly.css')}}">
+  <link rel="stylesheet" href="{{asset('assets/css/pages/form-element-select.css')}}">
+
+  <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
 
   <style>
     .logout {
@@ -25,6 +28,8 @@
       background-color: #df404d !important;
     }
   </style>
+
+  @yield('additional-css')
 
 </head>
 
@@ -68,7 +73,7 @@
               </svg>
             </div>
 
-            <div class="sidebar-toggler  x">
+            <div class="sidebar-toggler x">
               <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
             </div>
           </div>
@@ -84,7 +89,49 @@
               </a>
             </li>
 
-            <li class="sidebar-title">Akun</li>
+            @php
+            $route = Request::route()->getName();
+            @endphp
+
+            <li class="sidebar-item {{ $route == 'kontrak.index' ? 'active' : null }} has-sub">
+              <a href="#" class='sidebar-link'>
+                <i class="bi bi-journal-bookmark-fill"></i>
+                <span>Data Kontrak</span>
+              </a>
+              <ul class="submenu active">
+                <li class="submenu-item {{ $route == 'kontrak.index' ? 'active' : null }}">
+                  <a href="{{ route('kontrak.index') }}">Daftar Kontrak</a>
+                </li>
+                <li class="submenu-item ">
+                  <a href="layout-vertical-1-column.html">Pembayaran</a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="sidebar-item {{ $route == 'pengeluaran.index' ? 'active' : null }}">
+              <a href="{{ route('pengeluaran.index') }}" class='sidebar-link'>
+                <i class="bi bi-wallet2"></i>
+                <span>Pengeluaran</span>
+              </a>
+            </li>
+
+            <li class="sidebar-title">Pasar</li>
+
+            <li class="sidebar-item {{ Request::route()->getName() == 'jenis-pasar.index' ? 'active' : null }}">
+              <a href="{{ route('jenis-pasar.index') }}" class='sidebar-link'>
+                <i class="bi bi-shop-window"></i>
+                <span>Jenis Ruko</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item {{ Request::route()->getName() == 'pedagang.index' ? 'active' : null }}">
+              <a href="{{ route('pedagang.index') }}" class='sidebar-link'>
+                <i class="bi bi-person-lines-fill"></i>
+                <span>Data Pedagang</span>
+              </a>
+            </li>
+
+            <li class="sidebar-title">Admin</li>
 
             <li class="sidebar-item {{ Request::route()->getName() == 'admin-data.index' ? 'active' : null }}">
               <a href="{{ route('admin-data.index') }}" class='sidebar-link'>
@@ -119,6 +166,8 @@
         @yield('content')
       </div>
 
+      @yield('modal')
+
       <footer>
         <div class="footer clearfix mb-0 text-muted">
           <div class="float-start">
@@ -134,6 +183,10 @@
   </div>
   <script src="{{asset('assets/js/app.js')}}"></script>
   <script src="{{asset('assets/js/extensions/simple-datatables.js')}}"></script>
+  <script src="{{asset('assets/js/extensions/form-element-select.js')}}"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+
+  @yield('js')
 </body>
 
 </html>

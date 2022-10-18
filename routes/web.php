@@ -3,6 +3,10 @@
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DataAdminController;
+use App\Http\Controllers\Dashboard\DataContractController;
+use App\Http\Controllers\Dashboard\DataPenyewaController;
+use App\Http\Controllers\Dashboard\JenisPasarController;
+use App\Http\Controllers\Dashboard\PengeluaranController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,8 +38,24 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::prefix('/dashboard')->group(function () {
+        Route::get('/data-kontrak', [DataContractController::class, 'index'])->name('kontrak.index');
+        Route::get('/data-kontrak/create', [DataContractController::class, 'create'])->name('kontrak.cerate');
+        Route::post('/data-kontrak', [DataContractController::class, 'store'])->name('kontrak.store');
+        Route::get('/data-kontrak/{data_kontrak}/edit', [DataContractController::class, 'edit'])->name('kontrak.edit');
+        Route::put('/data-kontrak/{data_kontrak}', [DataContractController::class, 'update'])->name('kontrak.update');
+        Route::delete('/data-kontrak/{data_kontrak}/delete', [DataContractController::class, 'destroy'])->name('kontrak.destroy');
+
+        // Route Pengeluaran
+        Route::resource('/pengeluaran', PengeluaranController::class);
+
         // Route Admin Data
         Route::resource('/admin-data', DataAdminController::class);
+
+        // Route Data Toko
+        Route::resource('/jenis-pasar', JenisPasarController::class)->except(['show']);
+
+        // Route Data Penyewa
+        Route::resource('/pedagang', DataPenyewaController::class);
     });
 });
 
