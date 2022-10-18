@@ -13,4 +13,10 @@ class JenisToko extends Model
     protected $fillable = [
         'name',
     ];
+
+    // Relations
+    public function kontrak()
+    {
+        return $this->hasMany(Kontrak::class);
+    }
 }

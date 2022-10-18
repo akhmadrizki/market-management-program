@@ -6,8 +6,12 @@ Dashboard
 @section('content')
 <div class="page-heading">
   <div class="row">
-    <div class="col-12 col-md-6 order-md-1 order-last">
+    <div class="col-lg-6 col-md-6 order-md-1 order-last">
       <h3>Selamat Datang, <span class="text-capitalize">{{ Auth::user()->name }} ✋</span></h3>
+    </div>
+
+    <div class="col-lg-6 col-md-6 order-md-1 order-last text-end">
+      <small>{{ date('l, d-M-Y') }}</small>
     </div>
   </div>
 </div>

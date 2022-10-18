@@ -14,8 +14,20 @@ class Kontrak extends Model
         'id_penyewa',
         'id_jenis_toko',
         'jenis_kontrak',
-        'harga',
-        'durasi',
+        'tanggal',
+        'biaya_sewa',
+        'no_toko',
         'status',
     ];
+
+    // Relations
+    public function penyewa()
+    {
+        return $this->belongsTo(Penyewa::class, 'id_penyewa');
+    }
+
+    public function jenisToko()
+    {
+        return $this->belongsTo(JenisToko::class, 'id_jenis_toko');
+    }
 }

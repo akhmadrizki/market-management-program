@@ -15,4 +15,10 @@ class Penyewa extends Model
         'contact',
         'address',
     ];
+
+    // Relations
+    public function kontrak()
+    {
+        return $this->hasMany(Kontrak::class);
+    }
 }

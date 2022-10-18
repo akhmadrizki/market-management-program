@@ -18,9 +18,10 @@ return new class extends Migration
             $table->unsignedInteger('id_penyewa');
             $table->unsignedInteger('id_jenis_toko');
             $table->string('jenis_kontrak');
-            $table->integer('harga');
-            $table->integer('durasi');
-            $table->boolean('status')->default(true);;
+            $table->date('tanggal');
+            $table->integer('biaya_sewa');
+            $table->char('no_toko', 15);
+            $table->boolean('status')->default(true);
             $table->timestamps();
         });
     }

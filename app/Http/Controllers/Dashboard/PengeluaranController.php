@@ -19,7 +19,7 @@ class PengeluaranController extends Controller
      */
     public function index()
     {
-        $pengeluarans = Pengeluaran::all();
+        $pengeluarans = Pengeluaran::orderBy('tanggal', 'asc')->get();
 
         return view('pages.dashboard.pengeluaran.index', compact('pengeluarans'));
     }

@@ -19,7 +19,7 @@ class DataPenyewaController extends Controller
      */
     public function index()
     {
-        $penyewas = Penyewa::all();
+        $penyewas = Penyewa::orderBy('name', 'asc')->get();
         return view('pages.dashboard.pedagang.index', compact('penyewas'));
     }
 
@@ -146,7 +146,7 @@ class DataPenyewaController extends Controller
         } catch (Exception $error) {
             DB::rollBack();
 
-            return redirect()->route('pedagang.index', $pedagang->id)->with('message', $error->getMessage());
+            return redirect()->route('pedagang.index')->with('message', $error->getMessage());
         }
 
         return redirect()->route('pedagang.index')->with([
