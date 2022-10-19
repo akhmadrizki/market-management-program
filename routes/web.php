@@ -6,6 +6,7 @@ use App\Http\Controllers\Dashboard\DataAdminController;
 use App\Http\Controllers\Dashboard\DataContractController;
 use App\Http\Controllers\Dashboard\DataPenyewaController;
 use App\Http\Controllers\Dashboard\JenisPasarController;
+use App\Http\Controllers\Dashboard\PembayaranController;
 use App\Http\Controllers\Dashboard\PengeluaranController;
 use Illuminate\Support\Facades\Route;
 
@@ -44,6 +45,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/data-kontrak/{data_kontrak}/edit', [DataContractController::class, 'edit'])->name('kontrak.edit');
         Route::put('/data-kontrak/{data_kontrak}', [DataContractController::class, 'update'])->name('kontrak.update');
         Route::delete('/data-kontrak/{data_kontrak}/delete', [DataContractController::class, 'destroy'])->name('kontrak.destroy');
+
+        // Route Pembayaran
+        Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index');
+        Route::get('/pembayaran/fetch/{id}', [PembayaranController::class, 'fetch'])->name('pembayaran.fetch');
+        Route::post('/pembayaran', [PembayaranController::class, 'store'])->name('pembayaran.store');
 
         // Route Pengeluaran
         Route::resource('/pengeluaran', PengeluaranController::class);

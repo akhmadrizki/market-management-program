@@ -54,7 +54,7 @@ Data Kontrak
               </button>
             </td>
             <td>
-              <a href="#" class="btn btn-sm btn-success" title="Detail Pembayaran">Detail Pembayaran</a>
+              <a href="#" class="btn btn-sm btn-success" title="Detail Pembayaran">Riwayat Pembayaran</a>
             </td>
           </tr>
           @endforeach
