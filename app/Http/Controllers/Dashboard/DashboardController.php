@@ -7,43 +7,44 @@ use App\Models\Pembayaran;
 use App\Models\Pengeluaran;
 use App\Models\Penyewa;
 use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class DashboardController extends Controller
 {
     public function index(Request $request)
     {
-        $pedagang = Penyewa::all();
-        $admin = User::where('role_id', '=', 2)->get();
+        // harian
+        $pemasukanHarian   = Pembayaran::whereDate('tanggal', Carbon::today())->get();
+        $pengeluaranHarian = Pengeluaran::whereDate('tanggal', Carbon::today())->get();
+        $pedagangHarian    = Penyewa::whereDate('created_at', Carbon::today())->get();
+        $adminHarian       = User::where('role_id', '=', 2)->whereDate('created_at', Carbon::today())->get();
 
-        // Request
-        $dateFilter = $request->date;
-        $monthFilter = $request->month;
-        $yearFilter = $request->year;
+        // bulanan
+        $pemasukanBulanan   = Pembayaran::whereMonth('tanggal', Carbon::now()->month)->get();
+        $pengeluaranBulanan = Pengeluaran::whereMonth('tanggal', Carbon::now()->month)->get();
+        $pedagangBulanan    = Penyewa::whereMonth('created_at', Carbon::now()->month)->get();
+        $adminBulanan       = User::where('role_id', '=', 2)->whereMonth('created_at', Carbon::now()->month)->get();
 
-        if ($request->has('date') || $request->has('month') || $request->has('year')) {
-            $pemasukan = Pembayaran::where('tanggal', $dateFilter)
-                ->whereMonth('tanggal', $monthFilter)
-                ->whereYear('tanggal', $yearFilter)
-                ->get();
-
-            $pengeluaran = Pengeluaran::where('tanggal', $dateFilter)
-                ->whereMonth('tanggal', $monthFilter)
-                ->whereYear('tanggal', $yearFilter)
-                ->get();
-        } else {
-            $pemasukan = Pembayaran::all();
-            $pengeluaran = Pengeluaran::all();
-        }
+        // tahunan
+        $pemasukanTahunan   = Pembayaran::whereYear('tanggal', Carbon::now()->year)->get();
+        $pengeluaranTahunan = Pengeluaran::whereYear('tanggal', Carbon::now()->year)->get();
+        $pedagangTahunan    = Penyewa::whereYear('created_at', Carbon::now()->year)->get();
+        $adminTahunan       = User::where('role_id', '=', 2)->whereYear('created_at', Carbon::now()->year)->get();
 
         return view('pages.index', compact(
-            'pemasukan',
-            'pengeluaran',
-            'pedagang',
-            'admin',
-            'dateFilter',
-            'monthFilter',
-            'yearFilter',
+            'pemasukanHarian',
+            'pengeluaranHarian',
+            'pedagangHarian',
+            'adminHarian',
+            'pemasukanBulanan',
+            'pengeluaranBulanan',
+            'pedagangBulanan',
+            'adminBulanan',
+            'pemasukanTahunan',
+            'pengeluaranTahunan',
+            'pedagangTahunan',
+            'adminTahunan',
         ));
     }
 }
