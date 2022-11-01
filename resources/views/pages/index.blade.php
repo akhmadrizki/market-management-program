@@ -46,7 +46,7 @@ Dashboard
                           @endphp
                           <h3 class="font-extrabold mb-0">Rp{{ number_format($uangMasuk, 0, ',', '.') }}</h3>
 
-                          <a href="#">Lihat Detail &rarr;</a>
+                          <a href="{{ route('pemasukan.harian') }}">Lihat Detail &rarr;</a>
                         </div>
                       </div>
                     </div>
@@ -121,7 +121,7 @@ Dashboard
                           @endphp
                           <h3 class="font-extrabold mb-0">Rp{{ number_format($uangMasuk, 0, ',', '.') }}</h3>
 
-                          <a href="#">Lihat Detail &rarr;</a>
+                          <a href="{{ route('pemasukan.bulanan') }}">Lihat Detail &rarr;</a>
                         </div>
                       </div>
                     </div>
