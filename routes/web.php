@@ -8,7 +8,11 @@ use App\Http\Controllers\Dashboard\DataPenyewaController;
 use App\Http\Controllers\Dashboard\JenisPasarController;
 use App\Http\Controllers\Dashboard\Pemasukan\PemasukanBulananController;
 use App\Http\Controllers\Dashboard\Pemasukan\PemasukanHarianController;
+use App\Http\Controllers\Dashboard\Pemasukan\PemasukanTahunanController;
 use App\Http\Controllers\Dashboard\PembayaranController;
+use App\Http\Controllers\Dashboard\Pengeluaran\PengeluaranBulananController;
+use App\Http\Controllers\Dashboard\Pengeluaran\PengeluaranHarianController;
+use App\Http\Controllers\Dashboard\Pengeluaran\PengeluaranTahunanController;
 use App\Http\Controllers\Dashboard\PengeluaranController;
 use Illuminate\Support\Facades\Route;
 
@@ -51,6 +55,7 @@ Route::middleware(['auth'])->group(function () {
         // Route Pemasukan
         Route::get('/pemasukan-harian', [PemasukanHarianController::class, 'index'])->name('pemasukan.harian');
         Route::get('/pemasukan-bulanan', [PemasukanBulananController::class, 'index'])->name('pemasukan.bulanan');
+        Route::get('/pemasukan-tahunan', [PemasukanTahunanController::class, 'index'])->name('pemasukan.tahunan');
 
         // Route Pembayaran
         Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index');
@@ -59,6 +64,10 @@ Route::middleware(['auth'])->group(function () {
 
         // Route Pengeluaran
         Route::resource('/pengeluaran', PengeluaranController::class);
+
+        Route::get('/pengeluaran-harian', [PengeluaranHarianController::class, 'index'])->name('pengeluaran.harian');
+        Route::get('/pengeluaran-bulanan', [PengeluaranBulananController::class, 'index'])->name('pengeluaran.bulanan');
+        Route::get('/pengeluaran-tahunan', [PengeluaranTahunanController::class, 'index'])->name('pengeluaran.tahunan');
 
         // Route Admin Data
         Route::resource('/admin-data', DataAdminController::class);

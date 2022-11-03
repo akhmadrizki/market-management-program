@@ -15,10 +15,18 @@ Data Pedagang
 <section class="section">
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('pedagang.create') }}" class="btn btn-sm btn-primary">
-                <span>Tambah Data Pedagang Baru</span>
-            </a>
+            <div class="row">
+                <div class="col-6">
+                    <a href="{{ route('pedagang.create') }}" class="btn btn-sm btn-primary">
+                        <span>Tambah Data Pedagang Baru</span>
+                    </a>
+                </div>
+                <div class="col-6">
+                    <span style="float: right">Jumlah Pedagang Sebanyak: <b>{{ count($penyewas) }}</b></span>
+                </div>
+            </div>
         </div>
+
         <div class="card-body">
             <table class="table table-striped" id="table1">
                 <thead>
