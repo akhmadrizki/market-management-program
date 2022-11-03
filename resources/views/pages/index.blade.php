@@ -64,7 +64,7 @@ Dashboard
                           @endphp
                           <h3 class="font-extrabold mb-0">Rp{{ number_format($uangKeluar, 0, ',', '.') }}</h3>
 
-                          <a href="#">Lihat Detail &rarr;</a>
+                          <a href="{{ route('pengeluaran.harian') }}">Lihat Detail &rarr;</a>
                         </div>
                       </div>
                     </div>
@@ -79,7 +79,7 @@ Dashboard
                           <h6 class="text-muted font-semibold">Jumlah Pedagang</h6>
                           <h6 class="font-extrabold mb-0">{{ count($pedagangHarian) }}</h6>
 
-                          <a href="#">Lihat Detail &rarr;</a>
+                          <a href="{{ route('pedagang.index') }}">Lihat Detail &rarr;</a>
                         </div>
                       </div>
                     </div>
@@ -94,7 +94,7 @@ Dashboard
                           <h6 class="text-muted font-semibold">Jumlah Admin</h6>
                           <h6 class="font-extrabold mb-0">{{ count($adminHarian) }}</h6>
 
-                          <a href="#">Lihat Detail &rarr;</a>
+                          <a href="{{ route('admin-data.index') }}">Lihat Detail &rarr;</a>
                         </div>
                       </div>
                     </div>
@@ -139,7 +139,7 @@ Dashboard
                           @endphp
                           <h3 class="font-extrabold mb-0">Rp{{ number_format($uangKeluar, 0, ',', '.') }}</h3>
 
-                          <a href="#">Lihat Detail &rarr;</a>
+                          <a href="{{ route('pengeluaran.bulanan') }}">Lihat Detail &rarr;</a>
                         </div>
                       </div>
                     </div>
@@ -154,7 +154,7 @@ Dashboard
                           <h6 class="text-muted font-semibold">Jumlah Pedagang</h6>
                           <h6 class="font-extrabold mb-0">{{ count($pedagangBulanan) }}</h6>
 
-                          <a href="#">Lihat Detail &rarr;</a>
+                          <a href="{{ route('pedagang.index') }}">Lihat Detail &rarr;</a>
                         </div>
                       </div>
                     </div>
@@ -169,7 +169,7 @@ Dashboard
                           <h6 class="text-muted font-semibold">Jumlah Admin</h6>
                           <h6 class="font-extrabold mb-0">{{ count($adminBulanan) }}</h6>
 
-                          <a href="#">Lihat Detail &rarr;</a>
+                          <a href="{{ route('admin-data.index') }}">Lihat Detail &rarr;</a>
                         </div>
                       </div>
                     </div>
@@ -196,7 +196,7 @@ Dashboard
                           @endphp
                           <h3 class="font-extrabold mb-0">Rp{{ number_format($uangMasuk, 0, ',', '.') }}</h3>
 
-                          <a href="#">Lihat Detail &rarr;</a>
+                          <a href="{{ route('pemasukan.tahunan') }}">Lihat Detail &rarr;</a>
                         </div>
                       </div>
                     </div>
@@ -214,7 +214,7 @@ Dashboard
                           @endphp
                           <h3 class="font-extrabold mb-0">Rp{{ number_format($uangKeluar, 0, ',', '.') }}</h3>
 
-                          <a href="#">Lihat Detail &rarr;</a>
+                          <a href="{{ route('pengeluaran.tahunan') }}">Lihat Detail &rarr;</a>
                         </div>
                       </div>
                     </div>
@@ -229,7 +229,7 @@ Dashboard
                           <h6 class="text-muted font-semibold">Jumlah Pedagang</h6>
                           <h6 class="font-extrabold mb-0">{{ count($pedagangTahunan) }}</h6>
 
-                          <a href="#">Lihat Detail &rarr;</a>
+                          <a href="{{ route('pedagang.index') }}">Lihat Detail &rarr;</a>
                         </div>
                       </div>
                     </div>
@@ -244,7 +244,7 @@ Dashboard
                           <h6 class="text-muted font-semibold">Jumlah Admin</h6>
                           <h6 class="font-extrabold mb-0">{{ count($adminTahunan) }}</h6>
 
-                          <a href="#">Lihat Detail &rarr;</a>
+                          <a href="{{ route('admin-data.index') }}">Lihat Detail &rarr;</a>
                         </div>
                       </div>
                     </div>
