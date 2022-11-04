@@ -125,7 +125,7 @@ Pembayaran
                                 <td>{{ $kontrak->kontrak->no_toko }}</td>
                                 <td>{{ $kontrak->kontrak->jenis_kontrak }}</td>
                                 <td>Rp{{ number_format($kontrak->biaya_sewa, 0, ',', '.') }}</td>
-                                <td>{{ date( 'd/m/Y', strtotime($kontrak->tanggal)) }}</td>
+                                <td>{{ \Carbon\Carbon::parse($kontrak->tanggal)->translatedFormat('d F Y') }}</td>
                                 <td>{{ $kontrak->user->name }}</td>
                             </tr>
                             @endforeach

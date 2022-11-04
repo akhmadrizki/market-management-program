@@ -108,7 +108,7 @@ Pengeluaran Bulanan
                             @foreach ($pengeluarans as $pengeluaran)
                             <tr>
                                 <td class="text-capitalize">{{ $pengeluaran->desc }}</td>
-                                <td>{{ date( 'd/m/Y', strtotime($pengeluaran->tanggal)) }}</td>
+                                <td>{{ \Carbon\Carbon::parse($pengeluaran->tanggal)->translatedFormat('d F Y') }}</td>
                                 <td>Rp{{ number_format($pengeluaran->total, 0, ',', '.') }}</td>
                             </tr>
                             @endforeach

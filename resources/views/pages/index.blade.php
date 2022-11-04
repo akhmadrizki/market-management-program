@@ -11,7 +11,7 @@ Dashboard
     </div>
 
     <div class="col-lg-6 col-md-6 order-md-1 order-last text-end">
-      <h6>{{ date('l, d-F-Y') }}</h6>
+      <h6>{{ $getDateNow }}</h6>
     </div>
   </div>
 </div>

@@ -14,6 +14,7 @@ use App\Http\Controllers\Dashboard\Pengeluaran\PengeluaranBulananController;
 use App\Http\Controllers\Dashboard\Pengeluaran\PengeluaranHarianController;
 use App\Http\Controllers\Dashboard\Pengeluaran\PengeluaranTahunanController;
 use App\Http\Controllers\Dashboard\PengeluaranController;
+use App\Http\Controllers\Dashboard\Riwayat\PembayaranController as RiwayatPembayaranController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -62,6 +63,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/pembayaran/fetch/{id}', [PembayaranController::class, 'fetch'])->name('pembayaran.fetch');
         Route::post('/pembayaran', [PembayaranController::class, 'store'])->name('pembayaran.store');
 
+        // Route Riwayat Pembayaran
+        Route::get('/riwayat-pembayaran/{id}', [RiwayatPembayaranController::class, 'index'])->name('riwayat.pembayaran');
+
         // Route Pengeluaran
         Route::resource('/pengeluaran', PengeluaranController::class);
 
@@ -83,3 +87,5 @@ Route::middleware(['auth'])->group(function () {
 // Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::redirect('/home', '/dashboard');

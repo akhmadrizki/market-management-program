@@ -108,7 +108,7 @@ Pemasukan Tahunan
                                 <td>{{ $pemasukan->kontrak->no_toko }}</td>
                                 <td>{{ $pemasukan->kontrak->jenis_kontrak }}</td>
                                 <td>Rp{{ number_format($pemasukan->biaya_sewa, 0, ',', '.') }}</td>
-                                <td>{{ date( 'd/m/Y', strtotime($pemasukan->tanggal)) }}</td>
+                                <td>{{ \Carbon\Carbon::parse($pemasukan->tanggal)->translatedFormat('d F Y') }}</td>
                                 <td>{{ $pemasukan->user->name }}</td>
                             </tr>
                             @endforeach
