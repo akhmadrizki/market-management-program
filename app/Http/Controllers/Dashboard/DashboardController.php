@@ -14,6 +14,8 @@ class DashboardController extends Controller
 {
     public function index(Request $request)
     {
+        $getDateNow = Carbon::now()->translatedFormat('l, d F Y');
+
         // harian
         $pemasukanHarian   = Pembayaran::whereDate('tanggal', Carbon::today())->get();
         $pengeluaranHarian = Pengeluaran::whereDate('tanggal', Carbon::today())->get();
@@ -45,6 +47,7 @@ class DashboardController extends Controller
             'pengeluaranTahunan',
             'pedagangTahunan',
             'adminTahunan',
+            'getDateNow',
         ));
     }
 }

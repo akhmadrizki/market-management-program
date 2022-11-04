@@ -54,7 +54,8 @@ Data Kontrak
               </button>
             </td>
             <td>
-              <a href="#" class="btn btn-sm btn-success" title="Detail Pembayaran">Riwayat Pembayaran</a>
+              <a href="{{ route('riwayat.pembayaran', $contract->id) }}" class="btn btn-sm btn-success"
+                title="Detail Pembayaran">Riwayat Pembayaran</a>
             </td>
           </tr>
           @endforeach
