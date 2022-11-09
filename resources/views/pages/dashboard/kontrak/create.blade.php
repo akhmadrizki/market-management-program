@@ -69,6 +69,7 @@ Tambah Data Kontrak
                 <select name="jenis_kontrak" class="form-select @error('jenis_kontrak') is-invalid @enderror">
                   <option value="none" selected disabled>- Pilih Jenis Kontrak -</option>
                   <option value="bulanan">Bulanan</option>
+                  <option value="6bulanan">6 Bulanan</option>
                   <option value="tahunan">Tahunan</option>
                 </select>
 
@@ -92,10 +93,10 @@ Tambah Data Kontrak
               </div>
             </div>
 
-            <div class="col-6">
+            <div class="col-4">
               <div class="form-group">
                 <label>Nomor Toko</label>
-                <input type="number" name="no_toko" min="0" value="{{ old('no_toko') }}"
+                <input type="text" name="no_toko" value="{{ old('no_toko') }}"
                   class="form-control @error('no_toko') is-invalid @enderror">
 
                 @error('no_toko')
@@ -106,7 +107,7 @@ Tambah Data Kontrak
               </div>
             </div>
 
-            <div class=" col-6">
+            <div class=" col-4">
               <div class="form-group has-icon-left">
                 <label for="password-id-icon">Biaya Sewa</label>
                 <div class="position-relative">
@@ -119,6 +120,25 @@ Tambah Data Kontrak
                 </div>
 
                 @error('biaya_sewa')
+                <span class="text-danger">
+                  <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+              </div>
+            </div>
+
+            <div class=" col-4">
+              <div class="form-group has-icon-left">
+                <label for="tunggakan">Tunggakan <code>*kosongkan jika tidak ada</code></label>
+                <div class="position-relative">
+                  <input type="number" value="{{ old('tunggakan') }}" name="tunggakan" min="0"
+                    class="form-control @error('tunggakan') is-invalid @enderror" placeholder="0" id="tunggakan">
+                  <div class="form-control-icon">
+                    <span>Rp</span>
+                  </div>
+                </div>
+
+                @error('tunggakan')
                 <span class="text-danger">
                   <strong>{{ $message }}</strong>
                 </span>

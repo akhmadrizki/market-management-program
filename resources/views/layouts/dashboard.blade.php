@@ -97,7 +97,7 @@
               class="sidebar-item {{ $route == 'kontrak.index' || $route == 'pembayaran.index'  ? 'active' : null }} has-sub">
               <a href="#" class='sidebar-link'>
                 <i class="bi bi-journal-bookmark-fill"></i>
-                <span>Data Kontrak</span>
+                <span>Data Kontrak Pasar</span>
               </a>
               <ul class="submenu active">
                 <li class="submenu-item {{ $route == 'kontrak.index' ? 'active' : null }}">

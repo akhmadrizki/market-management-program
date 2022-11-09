@@ -36,6 +36,7 @@ Riwayat Pembayaran
                 <thead>
                     <tr>
                         <th>Biaya Sewa</th>
+                        <th>Dibayarkan</th>
                         <th>Status</th>
                         <th>Tanggal Bayar</th>
                     </tr>
@@ -44,7 +45,14 @@ Riwayat Pembayaran
                     @foreach ($getHistories as $history)
                     <tr>
                         <td>Rp{{ number_format($history->biaya_sewa, 0, ',', '.') }}</td>
-                        <td><span class="badge bg-info">Lunas</span></td>
+                        <td>Rp{{ number_format($history->dibayarkan, 0, ',', '.') }}</td>
+                        <td>
+                            @if ($history->dibayarkan < $history->biaya_sewa)
+                                <span class="badge bg-danger">Nyicil</span>
+                                @else
+                                <span class="badge bg-info">Lunas</span>
+                                @endif
+                        </td>
                         <td>{{ \Carbon\Carbon::parse($history->tanggal)->translatedFormat('d F Y') }}</td>
                     </tr>
                     @endforeach

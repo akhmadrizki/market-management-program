@@ -44,7 +44,8 @@ Dashboard
                           @php
                           $uangMasuk = $pemasukanHarian->sum('biaya_sewa');
                           @endphp
-                          <h3 class="font-extrabold mb-0">Rp{{ number_format($uangMasuk, 0, ',', '.') }}</h3>
+                          <h3 class="font-extrabold mb-0 text-success">Rp{{ number_format($uangMasuk, 0, ',', '.') }}
+                          </h3>
 
                           <a href="{{ route('pemasukan.harian') }}">Lihat Detail &rarr;</a>
                         </div>
@@ -62,7 +63,8 @@ Dashboard
                           @php
                           $uangKeluar = $pengeluaranHarian->sum('total');
                           @endphp
-                          <h3 class="font-extrabold mb-0">Rp{{ number_format($uangKeluar, 0, ',', '.') }}</h3>
+                          <h3 class="font-extrabold mb-0 text-danger">Rp{{ number_format($uangKeluar, 0, ',', '.') }}
+                          </h3>
 
                           <a href="{{ route('pengeluaran.harian') }}">Lihat Detail &rarr;</a>
                         </div>
@@ -119,7 +121,8 @@ Dashboard
                           @php
                           $uangMasuk = $pemasukanBulanan->sum('biaya_sewa');
                           @endphp
-                          <h3 class="font-extrabold mb-0">Rp{{ number_format($uangMasuk, 0, ',', '.') }}</h3>
+                          <h3 class="font-extrabold mb-0 text-success">Rp{{ number_format($uangMasuk, 0, ',', '.') }}
+                          </h3>
 
                           <a href="{{ route('pemasukan.bulanan') }}">Lihat Detail &rarr;</a>
                         </div>
@@ -137,7 +140,8 @@ Dashboard
                           @php
                           $uangKeluar = $pengeluaranBulanan->sum('total');
                           @endphp
-                          <h3 class="font-extrabold mb-0">Rp{{ number_format($uangKeluar, 0, ',', '.') }}</h3>
+                          <h3 class="font-extrabold mb-0 text-danger">Rp{{ number_format($uangKeluar, 0, ',', '.') }}
+                          </h3>
 
                           <a href="{{ route('pengeluaran.bulanan') }}">Lihat Detail &rarr;</a>
                         </div>
@@ -194,7 +198,8 @@ Dashboard
                           @php
                           $uangMasuk = $pemasukanTahunan->sum('biaya_sewa');
                           @endphp
-                          <h3 class="font-extrabold mb-0">Rp{{ number_format($uangMasuk, 0, ',', '.') }}</h3>
+                          <h3 class="font-extrabold mb-0 text-success">Rp{{ number_format($uangMasuk, 0, ',', '.') }}
+                          </h3>
 
                           <a href="{{ route('pemasukan.tahunan') }}">Lihat Detail &rarr;</a>
                         </div>
@@ -212,7 +217,8 @@ Dashboard
                           @php
                           $uangKeluar = $pengeluaranTahunan->sum('total');
                           @endphp
-                          <h3 class="font-extrabold mb-0">Rp{{ number_format($uangKeluar, 0, ',', '.') }}</h3>
+                          <h3 class="font-extrabold mb-0 text-danger">Rp{{ number_format($uangKeluar, 0, ',', '.') }}
+                          </h3>
 
                           <a href="{{ route('pengeluaran.tahunan') }}">Lihat Detail &rarr;</a>
                         </div>

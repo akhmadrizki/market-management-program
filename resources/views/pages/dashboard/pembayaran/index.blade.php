@@ -32,7 +32,7 @@ Pembayaran
                     <form action="{{ route('pembayaran.store') }}" method="POST">
                         @csrf
                         <div class="row">
-                            <div class="col-4">
+                            <div class="col-3">
                                 <label for="nama">Nama Pedagang</label>
                                 <div class="form-group">
                                     <select name="id_penyewa" id="nama_pedagang" class="choices form-select">
@@ -45,7 +45,7 @@ Pembayaran
                                 </div>
                             </div>
 
-                            <div class="col-4">
+                            <div class="col-3">
                                 <div class="form-group">
                                     <label for="email-id-icon">Jenis Pasar</label>
                                     <select name="id_jenis_toko" id="jenis_toko" class="form-select">
@@ -54,7 +54,7 @@ Pembayaran
                                 </div>
                             </div>
 
-                            <div class="col-4">
+                            <div class="col-3">
                                 <div class="form-group">
                                     <label for="email-id-icon">Jenis Kontrak</label>
                                     <select name="jenis_kontrak" id="jenis_kontrak" class="form-select">
@@ -63,7 +63,7 @@ Pembayaran
                                 </div>
                             </div>
 
-                            <div class="col-4">
+                            <div class="col-3">
                                 <div class="form-group">
                                     <label for="email-id-icon">Nomor Toko</label>
                                     <select name="no_toko" id="nomor_toko" class="form-select">
@@ -78,6 +78,20 @@ Pembayaran
                                     <select name="biaya_sewa" id="uang_sewa" class="form-select">
                                         <option value="none" selected disabled>- Pilih Biaya Sewa -</option>
                                     </select>
+                                </div>
+                            </div>
+
+                            <div class="col-4">
+                                <div class="form-group has-icon-left">
+                                    <label for="dibayarkan">Dibayarkan</label>
+                                    <div class="position-relative">
+                                        <input type="number" value="{{ old('dibayarkan') }}" name="dibayarkan" min="0"
+                                            class="form-control @error('dibayarkan') is-invalid @enderror"
+                                            placeholder="0" id="dibayarkan" required>
+                                        <div class="form-control-icon">
+                                            <span>Rp</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
 
@@ -113,8 +127,9 @@ Pembayaran
                                 <th>Nomor Toko</th>
                                 <th>Jenis Kontrak</th>
                                 <th>Biaya Sewa</th>
+                                <th>Dibayarkan</th>
                                 <th>Tanggal</th>
-                                <th>Admin</th>
+                                <th>Operator</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -125,6 +140,7 @@ Pembayaran
                                 <td>{{ $kontrak->kontrak->no_toko }}</td>
                                 <td>{{ $kontrak->kontrak->jenis_kontrak }}</td>
                                 <td>Rp{{ number_format($kontrak->biaya_sewa, 0, ',', '.') }}</td>
+                                <td>Rp{{ number_format($kontrak->dibayarkan, 0, ',', '.') }}</td>
                                 <td>{{ \Carbon\Carbon::parse($kontrak->tanggal)->translatedFormat('d F Y') }}</td>
                                 <td>{{ $kontrak->user->name }}</td>
                             </tr>
