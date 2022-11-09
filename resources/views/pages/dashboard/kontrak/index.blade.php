@@ -28,7 +28,7 @@ Data Kontrak
             <th>Nomor Toko</th>
             <th>Jenis Kontrak</th>
             <th>Biaya Sewa</th>
-            <th>Status</th>
+            <th>Tunggakan</th>
             <th>Aksi</th>
             <th></th>
           </tr>
@@ -41,8 +41,8 @@ Data Kontrak
             <td>{{ $contract->no_toko }}</td>
             <td>{{ $contract->jenis_kontrak }}</td>
             <td>Rp{{ number_format($contract->biaya_sewa, 0, ',', '.') }}</td>
-            <td>
-              <span class="badge bg-info">Active</span>
+            <td class="text-danger">
+              Rp{{ number_format($contract->tunggakan, 0, ',', '.') }}
             </td>
             <td>
               <a href="{{ route('kontrak.edit', $contract->id) }}" class="btn btn-sm btn-warning" title="Edit"><i

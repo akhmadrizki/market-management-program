@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Kontrak extends Model
 {
@@ -16,17 +17,26 @@ class Kontrak extends Model
         'jenis_kontrak',
         'tanggal',
         'biaya_sewa',
+        'tunggakan',
         'no_toko',
-        'status',
     ];
 
-    // Relations
-    public function penyewa()
+    /**
+     * Relation kontrak table to penyewa
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function penyewa(): BelongsTo
     {
         return $this->belongsTo(Penyewa::class, 'id_penyewa');
     }
 
-    public function jenisToko()
+    /**
+     * Relation kontrak table to jenis toko
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function jenisToko(): BelongsTo
     {
         return $this->belongsTo(JenisToko::class, 'id_jenis_toko');
     }

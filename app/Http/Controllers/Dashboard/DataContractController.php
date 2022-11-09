@@ -33,8 +33,7 @@ class DataContractController extends Controller
         DB::beginTransaction();
 
         try {
-            $kontrak = new Kontrak($request->safe(['id_penyewa', 'id_jenis_toko', 'jenis_kontrak', 'tanggal', 'biaya_sewa', 'no_toko']));
-            $kontrak->status = true;
+            $kontrak = new Kontrak($request->safe(['id_penyewa', 'id_jenis_toko', 'jenis_kontrak', 'tanggal', 'biaya_sewa', 'tunggakan', 'no_toko']));
 
             $kontrak->save();
 
@@ -65,10 +64,9 @@ class DataContractController extends Controller
 
         try {
 
-            $data_kontrak->fill($request->safe(['id_jenis_toko', 'jenis_kontrak', 'tanggal', 'biaya_sewa', 'no_toko']));
+            $data_kontrak->fill($request->safe(['id_jenis_toko', 'jenis_kontrak', 'tanggal', 'biaya_sewa', 'tunggakan', 'no_toko']));
 
             $data_kontrak->id_penyewa = $data_kontrak->id_penyewa;
-            $data_kontrak->status     = true;
 
             $data_kontrak->save();
 

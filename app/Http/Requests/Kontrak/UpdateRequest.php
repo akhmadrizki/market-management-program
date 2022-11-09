@@ -29,7 +29,8 @@ class UpdateRequest extends FormRequest
             'jenis_kontrak' => 'required',
             'tanggal'       => 'required',
             'biaya_sewa'    => 'required|numeric|min:3',
-            'no_toko'       => 'required|numeric',
+            'tunggakan'     => 'nullable|numeric|min:3',
+            'no_toko'       => 'required',
         ];
     }
 

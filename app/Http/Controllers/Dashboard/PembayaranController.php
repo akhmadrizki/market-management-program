@@ -35,8 +35,30 @@ class PembayaranController extends Controller
                 'kontrak_id' => $getDataKontrak->id,
                 'tanggal'    => $request->tanggal,
                 'biaya_sewa' => $getDataKontrak->biaya_sewa,
+                'dibayarkan' => $request->dibayarkan,
                 'user_id'    => Auth::user()->id,
             ];
+
+            if ($request->dibayarkan < $getDataKontrak->biaya_sewa) {
+                $bayarKontrak = $getDataKontrak->biaya_sewa - $request->dibayarkan;
+
+                $updateTunggakan = [
+                    'tunggakan' => $getDataKontrak->tunggakan + $bayarKontrak,
+                ];
+
+                $getDataKontrak->update($updateTunggakan);
+            }
+
+            if ($getDataKontrak->tunggakan != 0 && $request->dibayarkan > $getDataKontrak->biaya_sewa) {
+
+                $bayarKontrak = $request->dibayarkan - $getDataKontrak->biaya_sewa;
+
+                $updateTunggakan = [
+                    'tunggakan' => $getDataKontrak->tunggakan - $bayarKontrak,
+                ];
+
+                $getDataKontrak->update($updateTunggakan);
+            }
 
             Pembayaran::create($fields);
 

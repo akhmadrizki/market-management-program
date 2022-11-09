@@ -72,6 +72,8 @@ Ubah Data Kontrak
                                     <option value="none" disabled>- Pilih Jenis Kontrak -</option>
                                     <option value="bulanan" @if($data_kontrak->jenis_kontrak == 'bulanan') selected
                                         @endif>Bulanan</option>
+                                    <option value="6bulanan" @if($data_kontrak->jenis_kontrak == '6bulanan') selected
+                                        @endif>6 Bulanan</option>
                                     <option value="tahunan" @if($data_kontrak->jenis_kontrak == 'tahunan') selected
                                         @endif>Tahunan</option>
                                 </select>
@@ -97,10 +99,10 @@ Ubah Data Kontrak
                             </div>
                         </div>
 
-                        <div class="col-6">
+                        <div class="col-4">
                             <div class="form-group">
                                 <label>Nomor Toko</label>
-                                <input type="number" name="no_toko" min="0" value="{{ $data_kontrak->no_toko }}"
+                                <input type="text" name="no_toko" value="{{ $data_kontrak->no_toko }}"
                                     class="form-control @error('no_toko') is-invalid @enderror">
 
                                 @error('no_toko')
@@ -111,7 +113,7 @@ Ubah Data Kontrak
                             </div>
                         </div>
 
-                        <div class=" col-6">
+                        <div class=" col-4">
                             <div class="form-group has-icon-left">
                                 <label for="password-id-icon">Biaya Sewa</label>
                                 <div class="position-relative">
@@ -124,6 +126,26 @@ Ubah Data Kontrak
                                 </div>
 
                                 @error('biaya_sewa')
+                                <span class="text-danger">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class=" col-4">
+                            <div class="form-group has-icon-left">
+                                <label for="tunggakan">Tunggakan <code>*kosongkan jika tidak ada</code></label>
+                                <div class="position-relative">
+                                    <input type="number" value="{{ $data_kontrak->tunggakan }}" name="tunggakan" min="0"
+                                        class="form-control @error('tunggakan') is-invalid @enderror" placeholder="0"
+                                        id="tunggakan">
+                                    <div class="form-control-icon">
+                                        <span>Rp</span>
+                                    </div>
+                                </div>
+
+                                @error('tunggakan')
                                 <span class="text-danger">
                                     <strong>{{ $message }}</strong>
                                 </span>

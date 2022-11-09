@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Pembayaran extends Model
 {
@@ -14,16 +15,28 @@ class Pembayaran extends Model
         'kontrak_id',
         'tanggal',
         'biaya_sewa',
+        'dibayarkan',
         'user_id',
     ];
 
     // Relations
-    public function kontrak()
+
+    /**
+     * Relations from the database
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function kontrak(): BelongsTo
     {
         return $this->belongsTo(Kontrak::class, 'kontrak_id');
     }
 
-    public function user()
+    /**
+     * Relations from the database
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class, 'user_id');
     }
