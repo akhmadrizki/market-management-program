@@ -34,7 +34,7 @@ Ubah Data Kontrak
                 <div class="form-body">
                     <div class="row">
                         <div class="col-md-12">
-                            <label for="nama">Nama Pedagang</label>
+                            <label for="nama">Nama Penyewa</label>
 
                             <select name="id_penyewa" disabled class="form-select">
                                 @foreach ($pedagangs as $pedagang)
@@ -46,10 +46,10 @@ Ubah Data Kontrak
 
                         <div class="col-4">
                             <div class="form-group">
-                                <label for="email-id-icon">Jenis Pasar</label>
+                                <label for="email-id-icon">Jenis</label>
                                 <select name="id_jenis_toko"
                                     class="form-select @error('id_jenis_toko') is-invalid @enderror">
-                                    <option value="none" selected disabled>- Pilih Jenis Pasar -</option>
+                                    <option value="none" selected disabled>- Pilih Jenis -</option>
 
                                     @foreach ($jenisPasars as $jenisPasar)
                                     <option value="{{ $jenisPasar->id }}" @if($data_kontrak->id_jenis_toko ==
@@ -70,6 +70,8 @@ Ubah Data Kontrak
                                 <select name="jenis_kontrak"
                                     class="form-select @error('jenis_kontrak') is-invalid @enderror">
                                     <option value="none" disabled>- Pilih Jenis Kontrak -</option>
+                                    <option value="harian" @if($data_kontrak->jenis_kontrak == 'harian') selected
+                                        @endif>Harian</option>
                                     <option value="bulanan" @if($data_kontrak->jenis_kontrak == 'bulanan') selected
                                         @endif>Bulanan</option>
                                     <option value="6bulanan" @if($data_kontrak->jenis_kontrak == '6bulanan') selected
@@ -101,7 +103,7 @@ Ubah Data Kontrak
 
                         <div class="col-4">
                             <div class="form-group">
-                                <label>Nomor Toko</label>
+                                <label>Nomor</label>
                                 <input type="text" name="no_toko" value="{{ $data_kontrak->no_toko }}"
                                     class="form-control @error('no_toko') is-invalid @enderror">
 

@@ -33,10 +33,10 @@ Tambah Data Kontrak
         <div class="form-body">
           <div class="row">
             <div class="col-md-12">
-              <label for="nama">Nama Pedagang</label>
+              <label for="nama">Nama Penyewa</label>
               <div class="form-group">
                 <select name="id_penyewa" class="choices form-select @error('id_penyewa') is-invalid @enderror">
-                  <option value="none" selected disabled>- Pilih Pedagang -</option>
+                  <option value="none" selected disabled>- Pilih Penyewa -</option>
 
                   @foreach ($pedagangs as $pedagang)
                   <option value="{{ $pedagang->id }}">{{ $pedagang->name }}</option>
@@ -47,9 +47,9 @@ Tambah Data Kontrak
 
             <div class="col-4">
               <div class="form-group">
-                <label for="email-id-icon">Jenis Pasar</label>
+                <label for="email-id-icon">Jenis</label>
                 <select name="id_jenis_toko" class="form-select @error('id_jenis_toko') is-invalid @enderror">
-                  <option value="none" selected disabled>- Pilih Jenis Pasar -</option>
+                  <option value="none" selected disabled>- Pilih Jenis -</option>
 
                   @foreach ($jenisPasars as $jenisPasar)
                   <option value="{{ $jenisPasar->id }}">{{ $jenisPasar->name }}</option>
@@ -65,9 +65,10 @@ Tambah Data Kontrak
             </div>
             <div class="col-4">
               <div class="form-group">
-                <label for="email-id-icon">Jenis Kontrak</label>
+                <label for="email-id-icon">Jenis Sewa</label>
                 <select name="jenis_kontrak" class="form-select @error('jenis_kontrak') is-invalid @enderror">
-                  <option value="none" selected disabled>- Pilih Jenis Kontrak -</option>
+                  <option value="none" selected disabled>- Pilih Jenis Sewa -</option>
+                  <option value="harian">Harian</option>
                   <option value="bulanan">Bulanan</option>
                   <option value="6bulanan">6 Bulanan</option>
                   <option value="tahunan">Tahunan</option>
@@ -95,7 +96,7 @@ Tambah Data Kontrak
 
             <div class="col-4">
               <div class="form-group">
-                <label>Nomor Toko</label>
+                <label>Nomor</label>
                 <input type="text" name="no_toko" value="{{ old('no_toko') }}"
                   class="form-control @error('no_toko') is-invalid @enderror">
 

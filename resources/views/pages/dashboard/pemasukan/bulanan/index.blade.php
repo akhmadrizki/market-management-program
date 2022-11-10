@@ -6,8 +6,13 @@ Pemasukan Bulanan
 @section('content')
 <div class="page-heading">
     <div class="row">
-        <div class="col-12 col-md-6 order-md-1 order-last">
+        <div class="col-12 col-md-6">
             <h3>Pemasukan Bulanan</h3>
+        </div>
+
+        <div class="col-6 col-md-6">
+            <a href="{{ route('dashboard') }}" style="float: right" type="button"
+                class="btn btn-outline-primary me-1 mb-1">&larr; Kembali</a>
         </div>
     </div>
 </div>

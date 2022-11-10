@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DataAdminController;
 use App\Http\Controllers\Dashboard\DataContractController;
 use App\Http\Controllers\Dashboard\DataPenyewaController;
+use App\Http\Controllers\Dashboard\GarageContractController;
 use App\Http\Controllers\Dashboard\JenisPasarController;
 use App\Http\Controllers\Dashboard\Pemasukan\PemasukanBulananController;
 use App\Http\Controllers\Dashboard\Pemasukan\PemasukanHarianController;
@@ -46,6 +47,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::prefix('/dashboard')->group(function () {
+        // Route Kontrak Pasar
         Route::get('/data-kontrak', [DataContractController::class, 'index'])->name('kontrak.index');
         Route::get('/data-kontrak/create', [DataContractController::class, 'create'])->name('kontrak.cerate');
         Route::post('/data-kontrak', [DataContractController::class, 'store'])->name('kontrak.store');

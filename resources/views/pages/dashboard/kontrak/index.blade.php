@@ -23,10 +23,10 @@ Data Kontrak
       <table class="table table-striped" id="table1">
         <thead>
           <tr>
-            <th>Nama Pedagang</th>
+            <th>Nama Penyewa</th>
             <th>Jenis</th>
-            <th>Nomor Toko</th>
-            <th>Jenis Kontrak</th>
+            <th>Nomor</th>
+            <th>Jenis Sewa</th>
             <th>Biaya Sewa</th>
             <th>Tunggakan</th>
             <th>Aksi</th>
