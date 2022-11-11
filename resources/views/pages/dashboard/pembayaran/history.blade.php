@@ -37,6 +37,7 @@ Riwayat Pembayaran
                     <tr>
                         <th>Biaya Sewa</th>
                         <th>Dibayarkan</th>
+                        <th>Tunggakan</th>
                         <th>Status</th>
                         <th>Tanggal Bayar</th>
                     </tr>
@@ -46,12 +47,13 @@ Riwayat Pembayaran
                     <tr>
                         <td>Rp{{ number_format($history->biaya_sewa, 0, ',', '.') }}</td>
                         <td>Rp{{ number_format($history->dibayarkan, 0, ',', '.') }}</td>
+                        <td class="text-danger">Rp{{ number_format($history->tunggakan, 0, ',', '.') }}</td>
                         <td>
-                            @if ($history->dibayarkan < $history->biaya_sewa)
-                                <span class="badge bg-danger">Nyicil</span>
-                                @else
-                                <span class="badge bg-info">Lunas</span>
-                                @endif
+                            @if ($history->tunggakan != 0)
+                            <span class="badge bg-danger">Ada Tunggakan</span>
+                            @else
+                            <span class="badge bg-info">Lunas</span>
+                            @endif
                         </td>
                         <td>{{ \Carbon\Carbon::parse($history->tanggal)->translatedFormat('d F Y') }}</td>
                     </tr>

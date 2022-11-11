@@ -60,6 +60,9 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/pemasukan-bulanan', [PemasukanBulananController::class, 'index'])->name('pemasukan.bulanan');
         Route::get('/pemasukan-tahunan', [PemasukanTahunanController::class, 'index'])->name('pemasukan.tahunan');
 
+        // Export laporan pemasukan
+        Route::get('/laporan-pemasukan-harian', [PemasukanHarianController::class, 'export'])->name('laporan-pemasukan.harian');
+
         // Route Pembayaran
         Route::get('/pembayaran', [PembayaranController::class, 'index'])->name('pembayaran.index');
         Route::get('/pembayaran/fetch/{id}', [PembayaranController::class, 'fetch'])->name('pembayaran.fetch');

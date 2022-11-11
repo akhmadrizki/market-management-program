@@ -42,7 +42,8 @@ Pemasukan Harian
                             <h4>Data Pembayaran</h4>
                         </div>
                         <div class="col-6">
-                            <a href="#" class="btn btn-sm btn-success" style="float: right">
+                            <a href="{{ route('laporan-pemasukan.harian', $request->query()) }}"
+                                class="btn btn-sm btn-success" style="float: right">
                                 <span>Unduh Laporan</span>
                             </a>
                         </div>
@@ -53,13 +54,14 @@ Pemasukan Harian
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
-                                <th>Nama Pedagang</th>
+                                <th>Nama Penyewa</th>
                                 <th>Jenis</th>
-                                <th>Nomor Toko</th>
-                                <th>Jenis Kontrak</th>
+                                <th>Nomor</th>
+                                <th>Jenis Sewa</th>
                                 <th>Biaya Sewa</th>
+                                <th>Dibayarkan</th>
                                 <th>Tanggal</th>
-                                <th>Admin</th>
+                                <th>Operator</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -70,6 +72,7 @@ Pemasukan Harian
                                 <td>{{ $pemasukan->kontrak->no_toko }}</td>
                                 <td>{{ $pemasukan->kontrak->jenis_kontrak }}</td>
                                 <td>Rp{{ number_format($pemasukan->biaya_sewa, 0, ',', '.') }}</td>
+                                <td>Rp{{ number_format($pemasukan->dibayarkan, 0, ',', '.') }}</td>
                                 <td>{{ \Carbon\Carbon::parse($pemasukan->tanggal)->translatedFormat('d F Y') }}</td>
                                 <td>{{ $pemasukan->user->name }}</td>
                             </tr>
@@ -77,9 +80,9 @@ Pemasukan Harian
                             <tr>
                                 <th>Total Pemasukan</th>
                                 @php
-                                $uangMasuk = $pemasukans->sum('biaya_sewa');
+                                $uangMasuk = $pemasukans->sum('dibayarkan');
                                 @endphp
-                                <th colspan="6" style="text-align: right">
+                                <th colspan="7" style="text-align: right">
                                     Rp{{ number_format($uangMasuk, 0, ',', '.') }}
                                 </th>
                             </tr>

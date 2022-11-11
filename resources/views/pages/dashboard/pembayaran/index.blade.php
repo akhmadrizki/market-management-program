@@ -33,10 +33,10 @@ Pembayaran
                         @csrf
                         <div class="row">
                             <div class="col-3">
-                                <label for="nama">Nama Pedagang</label>
+                                <label for="nama">Nama Penyewa</label>
                                 <div class="form-group">
                                     <select name="id_penyewa" id="nama_pedagang" class="choices form-select">
-                                        <option value="none" selected disabled>- Pilih Pedagang -</option>
+                                        <option value="none" selected disabled>- Pilih Penyewa -</option>
 
                                         @foreach ($penyewas as $penyewa)
                                         <option value="{{ $penyewa->id }}">{{ $penyewa->name }}</option>
@@ -47,27 +47,27 @@ Pembayaran
 
                             <div class="col-3">
                                 <div class="form-group">
-                                    <label for="email-id-icon">Jenis Pasar</label>
+                                    <label for="email-id-icon">Jenis</label>
                                     <select name="id_jenis_toko" id="jenis_toko" class="form-select">
-                                        <option value="none" selected disabled>- Pilih Jenis Pasar -</option>
+                                        <option value="none" selected disabled>- Pilih Jenis -</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="col-3">
                                 <div class="form-group">
-                                    <label for="email-id-icon">Jenis Kontrak</label>
+                                    <label for="email-id-icon">Jenis Sewa</label>
                                     <select name="jenis_kontrak" id="jenis_kontrak" class="form-select">
-                                        <option value="none" selected disabled>- Pilih Jenis Kontrak -</option>
+                                        <option value="none" selected disabled>- Pilih Jenis Sewa -</option>
                                     </select>
                                 </div>
                             </div>
 
                             <div class="col-3">
                                 <div class="form-group">
-                                    <label for="email-id-icon">Nomor Toko</label>
+                                    <label for="email-id-icon">Nomor</label>
                                     <select name="no_toko" id="nomor_toko" class="form-select">
-                                        <option value="none" selected disabled>- Pilih Nomor Toko -</option>
+                                        <option value="none" selected disabled>- Pilih Nomor -</option>
                                     </select>
                                 </div>
                             </div>
@@ -122,12 +122,13 @@ Pembayaran
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
-                                <th>Nama Pedagang</th>
+                                <th>Nama Penyewa</th>
                                 <th>Jenis</th>
-                                <th>Nomor Toko</th>
-                                <th>Jenis Kontrak</th>
+                                <th>Nomor</th>
+                                <th>Jenis Sewa</th>
                                 <th>Biaya Sewa</th>
                                 <th>Dibayarkan</th>
+                                <th>Tunggakan</th>
                                 <th>Tanggal</th>
                                 <th>Operator</th>
                             </tr>
@@ -141,6 +142,8 @@ Pembayaran
                                 <td>{{ $kontrak->kontrak->jenis_kontrak }}</td>
                                 <td>Rp{{ number_format($kontrak->biaya_sewa, 0, ',', '.') }}</td>
                                 <td>Rp{{ number_format($kontrak->dibayarkan, 0, ',', '.') }}</td>
+                                <td class="text-danger">Rp{{ number_format($kontrak->tunggakan, 0, ',', '.') }}
+                                </td>
                                 <td>{{ \Carbon\Carbon::parse($kontrak->tanggal)->translatedFormat('d F Y') }}</td>
                                 <td>{{ $kontrak->user->name }}</td>
                             </tr>

@@ -104,13 +104,14 @@ Pemasukan Bulanan
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
-                                <th>Nama Pedagang</th>
+                                <th>Nama Penyewa</th>
                                 <th>Jenis</th>
-                                <th>Nomor Toko</th>
-                                <th>Jenis Kontrak</th>
+                                <th>Nomor</th>
+                                <th>Jenis Sewa</th>
                                 <th>Biaya Sewa</th>
+                                <th>Dibayarkan</th>
                                 <th>Tanggal</th>
-                                <th>Admin</th>
+                                <th>Operator</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -121,6 +122,7 @@ Pemasukan Bulanan
                                 <td>{{ $pemasukan->kontrak->no_toko }}</td>
                                 <td>{{ $pemasukan->kontrak->jenis_kontrak }}</td>
                                 <td>Rp{{ number_format($pemasukan->biaya_sewa, 0, ',', '.') }}</td>
+                                <td>Rp{{ number_format($pemasukan->dibayarkan, 0, ',', '.') }}</td>
                                 <td>{{ \Carbon\Carbon::parse($pemasukan->tanggal)->translatedFormat('d F Y') }}</td>
                                 <td>{{ $pemasukan->user->name }}</td>
                             </tr>
@@ -128,9 +130,9 @@ Pemasukan Bulanan
                             <tr>
                                 <th>Total Pemasukan</th>
                                 @php
-                                $uangMasuk = $pemasukans->sum('biaya_sewa');
+                                $uangMasuk = $pemasukans->sum('dibayarkan');
                                 @endphp
-                                <th colspan="6" style="text-align: right">
+                                <th colspan="7" style="text-align: right">
                                     Rp{{ number_format($uangMasuk, 0, ',', '.') }}
                                 </th>
                             </tr>

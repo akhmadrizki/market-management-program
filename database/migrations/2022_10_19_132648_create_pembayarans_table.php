@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('tanggal');
             $table->integer('biaya_sewa');
             $table->integer('dibayarkan');
+            $table->integer('tunggakan');
             $table->unsignedInteger('user_id');
             $table->timestamps();
         });

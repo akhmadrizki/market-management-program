@@ -16,6 +16,7 @@ class Pembayaran extends Model
         'tanggal',
         'biaya_sewa',
         'dibayarkan',
+        'tunggakan',
         'user_id',
     ];
 
