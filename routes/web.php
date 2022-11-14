@@ -5,6 +5,7 @@ use App\Http\Controllers\Dashboard\DashboardController;
 use App\Http\Controllers\Dashboard\DataAdminController;
 use App\Http\Controllers\Dashboard\DataContractController;
 use App\Http\Controllers\Dashboard\DataPenyewaController;
+use App\Http\Controllers\Dashboard\Export\ExportController;
 use App\Http\Controllers\Dashboard\GarageContractController;
 use App\Http\Controllers\Dashboard\JenisPasarController;
 use App\Http\Controllers\Dashboard\Pemasukan\PemasukanBulananController;
@@ -61,11 +62,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/pemasukan-tahunan', [PemasukanTahunanController::class, 'index'])->name('pemasukan.tahunan');
 
         // Export laporan pemasukan
+        Route::get('/laporan-pemasukan', [ExportController::class, 'pemasukan'])->name('laporan.pemasukan');
         Route::get('/laporan-pemasukan-harian', [PemasukanHarianController::class, 'export'])->name('laporan-pemasukan.harian');
         Route::get('/laporan-pemasukan-bulanan', [PemasukanBulananController::class, 'export'])->name('laporan-pemasukan.bulanan');
         Route::get('/laporan-pemasukan-tahunan', [PemasukanTahunanController::class, 'export'])->name('laporan-pemasukan.tahunan');
 
         // Export laporan pengeluaran
+        Route::get('/laporan-pengeluaran', [ExportController::class, 'pengeluaran'])->name('laporan.pengeluaran');
         Route::get('/laporan-pengeluaran-harian', [PengeluaranHarianController::class, 'export'])->name('laporan-pengeluaran.harian');
         Route::get('/laporan-pengeluaran-bulanan', [PengeluaranBulananController::class, 'export'])->name('laporan-pengeluaran.bulanan');
         Route::get('/laporan-pengeluaran-tahunan', [PengeluaranTahunanController::class, 'export'])->name('laporan-pengeluaran.tahunan');

@@ -44,8 +44,8 @@ Pemasukan Harian
                             <h4>Data Pembayaran</h4>
                         </div>
                         <div class="col-6">
-                            <a href="{{ route('laporan-pemasukan.harian', $request->query()) }}"
-                                class="btn btn-sm btn-secondary" style="float: right">
+                            <a href="{{ route('laporan.pemasukan') }}" class="btn btn-sm btn-secondary"
+                                style="float: right">
                                 <span>Unduh Seluruh Laporan</span>
                             </a>
 
