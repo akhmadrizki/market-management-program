@@ -93,8 +93,13 @@ Pengeluaran Bulanan
                             <h4>Data Pengeluaran</h4>
                         </div>
                         <div class="col-6">
-                            <a href="#" class="btn btn-sm btn-success" style="float: right">
-                                <span>Unduh Laporan</span>
+                            <a href="#" class="btn btn-sm btn-secondary" style="float: right">
+                                <span>Unduh Seluruh Laporan</span>
+                            </a>
+
+                            <a href="{{ route('laporan-pengeluaran.bulanan', $request->query()) }}"
+                                class="btn btn-sm btn-success" style="float: right; margin-right: 8px">
+                                <span>Unduh Laporan Bulanan</span>
                             </a>
                         </div>
                     </div>
