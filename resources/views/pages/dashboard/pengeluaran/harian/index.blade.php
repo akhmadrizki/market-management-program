@@ -44,8 +44,13 @@ Pengeluaran Harian
                             <h4>Data Pengeluaran</h4>
                         </div>
                         <div class="col-6">
-                            <a href="#" class="btn btn-sm btn-success" style="float: right">
-                                <span>Unduh Laporan</span>
+                            <a href="#" class="btn btn-sm btn-secondary" style="float: right">
+                                <span>Unduh Seluruh Laporan</span>
+                            </a>
+
+                            <a href="{{ route('laporan-pengeluaran.harian', $request->query()) }}"
+                                class="btn btn-sm btn-success" style="float: right; margin-right: 8px">
+                                <span>Unduh Laporan Harian</span>
                             </a>
                         </div>
                     </div>
@@ -57,6 +62,7 @@ Pengeluaran Harian
                             <tr>
                                 <th>Keterangan</th>
                                 <th>Tanggal</th>
+                                <th>Operator</th>
                                 <th>Total</th>
                             </tr>
                         </thead>
@@ -65,6 +71,7 @@ Pengeluaran Harian
                             <tr>
                                 <td class="text-capitalize">{{ $pengeluaran->desc }}</td>
                                 <td>{{ \Carbon\Carbon::parse($pengeluaran->tanggal)->translatedFormat('d F Y') }}</td>
+                                <td>{{ $pengeluaran->user->name }}</td>
                                 <td>Rp{{ number_format($pengeluaran->total, 0, ',', '.') }}</td>
                             </tr>
                             @endforeach
@@ -73,7 +80,7 @@ Pengeluaran Harian
                                 @php
                                 $uangKeluar = $pengeluarans->sum('total');
                                 @endphp
-                                <th colspan="2" style="text-align: right">
+                                <th colspan="3" style="text-align: right">
                                     Rp{{ number_format($uangKeluar, 0, ',', '.') }}
                                 </th>
                             </tr>

@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::create('pengeluarans', function (Blueprint $table) {
             $table->id();
+            $table->unsignedInteger('user_id');
             $table->string('desc');
             $table->integer('total');
             $table->date('tanggal');
