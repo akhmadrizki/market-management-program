@@ -128,7 +128,7 @@
             <li class="sidebar-item {{ $route == 'pedagang.index' ? 'active' : null }}">
               <a href="{{ route('pedagang.index') }}" class='sidebar-link'>
                 <i class="bi bi-person-lines-fill"></i>
-                <span>Data Pedagang</span>
+                <span>Data Penyewa</span>
               </a>
             </li>
 

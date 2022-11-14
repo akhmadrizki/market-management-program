@@ -31,14 +31,6 @@ class PembayaranController extends Controller
                 ->where('no_toko', $request->no_toko)
                 ->first();
 
-            $fields = [
-                'kontrak_id' => $getDataKontrak->id,
-                'tanggal'    => $request->tanggal,
-                'biaya_sewa' => $getDataKontrak->biaya_sewa,
-                'dibayarkan' => $request->dibayarkan,
-                'user_id'    => Auth::user()->id,
-            ];
-
             if ($request->dibayarkan < $getDataKontrak->biaya_sewa) {
                 $bayarKontrak = $getDataKontrak->biaya_sewa - $request->dibayarkan;
 
@@ -59,6 +51,15 @@ class PembayaranController extends Controller
 
                 $getDataKontrak->update($updateTunggakan);
             }
+
+            $fields = [
+                'kontrak_id' => $getDataKontrak->id,
+                'tanggal'    => $request->tanggal,
+                'biaya_sewa' => $getDataKontrak->biaya_sewa,
+                'dibayarkan' => $request->dibayarkan,
+                'tunggakan'  => $getDataKontrak->tunggakan,
+                'user_id'    => Auth::user()->id,
+            ];
 
             Pembayaran::create($fields);
 

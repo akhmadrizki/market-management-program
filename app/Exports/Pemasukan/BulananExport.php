@@ -1,21 +1,32 @@
 <?php
 
-namespace App\Http\Controllers\Dashboard\Pemasukan;
+namespace App\Exports\Pemasukan;
 
-use App\Exports\Pemasukan\BulananExport;
-use App\Http\Controllers\Controller;
 use App\Models\Pembayaran;
 use Carbon\Carbon;
-use Illuminate\Http\Request;
-use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\Contracts\View\View;
+use Maatwebsite\Excel\Concerns\FromView;
 
-class PemasukanBulananController extends Controller
+class BulananExport implements FromView
 {
-    public function index(Request $request)
+    protected $request;
+
+    public function __construct($request)
     {
-        if ($request->has('month')) {
-            $pemasukans = Pembayaran::whereMonth('tanggal', $request->month)
-                ->whereYear('tanggal', $request->year)
+        $this->request = $request;
+    }
+
+    /**
+     * 
+     * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
+     */
+    public function view(): View
+    {
+        $filter = $this->request;
+
+        if ($filter->has('month')) {
+            $pemasukans = Pembayaran::whereMonth('tanggal', $filter->month)
+                ->whereYear('tanggal', $filter->year)
                 ->with('user', 'kontrak.penyewa', 'kontrak.jenisToko')
                 ->get();
         } else {
@@ -25,13 +36,8 @@ class PemasukanBulananController extends Controller
                 ->get();
         }
 
-        return view('pages.dashboard.pemasukan.bulanan.index', compact('pemasukans', 'request'));
-    }
-
-    public function export(Request $request)
-    {
-        $getMonth = $request->month;
-        $year     = $request->year;
+        $getMonth = $filter->month;
+        $year     = $filter->year;
 
         if (!empty($getMonth) && !empty($year)) {
             $convertMonth = match ($getMonth) {
@@ -54,9 +60,9 @@ class PemasukanBulananController extends Controller
             $combined = Carbon::now()->translatedFormat('F Y');
         }
 
-        $formatFile = 'xlsx';
-        $fileName   = 'Laporan Pemasukan Bulanan ' . $combined . '.' . $formatFile;
-
-        return Excel::download(new BulananExport($request), $fileName);
+        return view('exports.pemasukan.bulanan', [
+            'combined'   => $combined,
+            'pemasukans' => $pemasukans,
+        ]);
     }
 }

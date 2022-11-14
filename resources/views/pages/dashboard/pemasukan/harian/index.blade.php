@@ -6,8 +6,13 @@ Pemasukan Harian
 @section('content')
 <div class="page-heading">
     <div class="row">
-        <div class="col-12 col-md-6 order-md-1 order-last">
+        <div class="col-6 col-md-6">
             <h3>Pemasukan Harian</h3>
+        </div>
+
+        <div class="col-6 col-md-6">
+            <a href="{{ route('dashboard') }}" style="float: right" type="button"
+                class="btn btn-outline-primary me-1 mb-1">&larr; Kembali</a>
         </div>
     </div>
 </div>
@@ -19,7 +24,9 @@ Pemasukan Harian
                 <div class="card-body">
                     <form action="" method="GET">
                         <label for="email-id-icon">Harian</label>
-                        <input name="pemasukan" type="date" class="form-control mb-3">
+                        <input name="pemasukan"
+                            value="{{ request()->query('pemasukan') == '' ? date('Y-m-d') : request()->query('pemasukan') }}"
+                            type="date" class="form-control mb-3">
 
                         <div class="col-12 d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary me-1 mb-1">Terapkan</button>
@@ -37,8 +44,14 @@ Pemasukan Harian
                             <h4>Data Pembayaran</h4>
                         </div>
                         <div class="col-6">
-                            <a href="#" class="btn btn-sm btn-success" style="float: right">
-                                <span>Unduh Laporan</span>
+                            <a href="{{ route('laporan-pemasukan.harian', $request->query()) }}"
+                                class="btn btn-sm btn-secondary" style="float: right">
+                                <span>Unduh Seluruh Laporan</span>
+                            </a>
+
+                            <a href="{{ route('laporan-pemasukan.harian', $request->query()) }}"
+                                class="btn btn-sm btn-success" style="float: right; margin-right: 8px">
+                                <span>Unduh Laporan Harian</span>
                             </a>
                         </div>
                     </div>
@@ -48,13 +61,14 @@ Pemasukan Harian
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
-                                <th>Nama Pedagang</th>
+                                <th>Nama Penyewa</th>
                                 <th>Jenis</th>
-                                <th>Nomor Toko</th>
-                                <th>Jenis Kontrak</th>
+                                <th>Nomor</th>
+                                <th>Jenis Sewa</th>
                                 <th>Biaya Sewa</th>
+                                <th>Dibayarkan</th>
                                 <th>Tanggal</th>
-                                <th>Admin</th>
+                                <th>Operator</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -65,6 +79,7 @@ Pemasukan Harian
                                 <td>{{ $pemasukan->kontrak->no_toko }}</td>
                                 <td>{{ $pemasukan->kontrak->jenis_kontrak }}</td>
                                 <td>Rp{{ number_format($pemasukan->biaya_sewa, 0, ',', '.') }}</td>
+                                <td>Rp{{ number_format($pemasukan->dibayarkan, 0, ',', '.') }}</td>
                                 <td>{{ \Carbon\Carbon::parse($pemasukan->tanggal)->translatedFormat('d F Y') }}</td>
                                 <td>{{ $pemasukan->user->name }}</td>
                             </tr>
@@ -72,9 +87,9 @@ Pemasukan Harian
                             <tr>
                                 <th>Total Pemasukan</th>
                                 @php
-                                $uangMasuk = $pemasukans->sum('biaya_sewa');
+                                $uangMasuk = $pemasukans->sum('dibayarkan');
                                 @endphp
-                                <th colspan="6" style="text-align: right">
+                                <th colspan="7" style="text-align: right">
                                     Rp{{ number_format($uangMasuk, 0, ',', '.') }}
                                 </th>
                             </tr>
