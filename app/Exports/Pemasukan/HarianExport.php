@@ -7,8 +7,6 @@ use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 
-use function PHPUnit\Framework\isNull;
-
 class HarianExport implements FromView
 {
     protected $request;
@@ -37,7 +35,7 @@ class HarianExport implements FromView
                 ->get();
         }
 
-        if (!isNull($filter)) {
+        if (!empty($filter)) {
             $filter = Carbon::parse($filter->pemasukan)->translatedFormat('l d F Y');
         } else {
             $filter = Carbon::now()->translatedFormat('l d F Y');

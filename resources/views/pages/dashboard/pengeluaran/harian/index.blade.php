@@ -24,7 +24,9 @@ Pengeluaran Harian
                 <div class="card-body">
                     <form action="" method="GET">
                         <label for="email-id-icon">Harian</label>
-                        <input name="pengeluaran" type="date" class="form-control mb-3">
+                        <input name="pengeluaran"
+                            value="{{ request()->query('pengeluaran') == '' ? date('Y-m-d') : request()->query('pengeluaran') }}"
+                            type="date" class="form-control mb-3">
 
                         <div class="col-12 d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary me-1 mb-1">Terapkan</button>

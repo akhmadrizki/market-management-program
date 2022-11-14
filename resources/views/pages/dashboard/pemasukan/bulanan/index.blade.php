@@ -93,8 +93,14 @@ Pemasukan Bulanan
                             <h4>Data Pembayaran</h4>
                         </div>
                         <div class="col-6">
-                            <a href="#" class="btn btn-sm btn-success" style="float: right">
-                                <span>Unduh Laporan</span>
+                            <a href="{{ route('laporan-pemasukan.bulanan', $request->query()) }}"
+                                class="btn btn-sm btn-secondary" style="float: right">
+                                <span>Unduh Seluruh Laporan Bulanan</span>
+                            </a>
+
+                            <a href="{{ route('laporan-pemasukan.bulanan', $request->query()) }}"
+                                class="btn btn-sm btn-success" style="float: right; margin-right: 8px">
+                                <span>Unduh Laporan Bulanan</span>
                             </a>
                         </div>
                     </div>

@@ -24,7 +24,9 @@ Pemasukan Harian
                 <div class="card-body">
                     <form action="" method="GET">
                         <label for="email-id-icon">Harian</label>
-                        <input name="pemasukan" type="date" class="form-control mb-3">
+                        <input name="pemasukan"
+                            value="{{ request()->query('pemasukan') == '' ? date('Y-m-d') : request()->query('pemasukan') }}"
+                            type="date" class="form-control mb-3">
 
                         <div class="col-12 d-flex justify-content-center">
                             <button type="submit" class="btn btn-primary me-1 mb-1">Terapkan</button>
@@ -43,8 +45,13 @@ Pemasukan Harian
                         </div>
                         <div class="col-6">
                             <a href="{{ route('laporan-pemasukan.harian', $request->query()) }}"
-                                class="btn btn-sm btn-success" style="float: right">
-                                <span>Unduh Laporan</span>
+                                class="btn btn-sm btn-secondary" style="float: right">
+                                <span>Unduh Seluruh Laporan</span>
+                            </a>
+
+                            <a href="{{ route('laporan-pemasukan.harian', $request->query()) }}"
+                                class="btn btn-sm btn-success" style="float: right; margin-right: 8px">
+                                <span>Unduh Laporan Harian</span>
                             </a>
                         </div>
                     </div>
