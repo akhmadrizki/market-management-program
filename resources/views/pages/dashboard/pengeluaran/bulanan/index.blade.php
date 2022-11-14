@@ -111,6 +111,7 @@ Pengeluaran Bulanan
                             <tr>
                                 <th>Keterangan</th>
                                 <th>Tanggal</th>
+                                <th>Operator</th>
                                 <th>Total</th>
                             </tr>
                         </thead>
@@ -119,6 +120,7 @@ Pengeluaran Bulanan
                             <tr>
                                 <td class="text-capitalize">{{ $pengeluaran->desc }}</td>
                                 <td>{{ \Carbon\Carbon::parse($pengeluaran->tanggal)->translatedFormat('d F Y') }}</td>
+                                <td>{{ $pengeluaran->user->name }}</td>
                                 <td>Rp{{ number_format($pengeluaran->total, 0, ',', '.') }}</td>
                             </tr>
                             @endforeach
