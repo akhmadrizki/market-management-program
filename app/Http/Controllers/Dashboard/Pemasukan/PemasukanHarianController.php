@@ -28,10 +28,14 @@ class PemasukanHarianController extends Controller
 
     public function export(Request $request)
     {
-        $period = Carbon::parse($request->pemasukan)->translatedFormat('l, d F Y');
+        if (!empty($request->pemasukan)) {
+            $period = Carbon::parse($request->pemasukan)->translatedFormat('l d F Y');
+        } else {
+            $period = Carbon::now()->translatedFormat('l d F Y');
+        }
 
         $formatFile = 'xlsx';
-        $fileName   = 'Laporan Pemasukan Harian' . $period . '.' . $formatFile;
+        $fileName   = 'Laporan Pemasukan Harian ' . $period . '.' . $formatFile;
 
         return Excel::download(new HarianExport($request), $fileName);
     }

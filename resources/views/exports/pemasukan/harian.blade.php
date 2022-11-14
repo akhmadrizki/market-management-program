@@ -1,7 +1,7 @@
 <table>
     <thead>
         <tr>
-            <th>Laporan Pemasukan {{ $filter->pemasukan }}</th>
+            <th>Laporan Pemasukan {{ $filter }}</th>
         </tr>
     </thead>
 </table>
