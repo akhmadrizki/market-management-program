@@ -1,7 +1,7 @@
 <table>
     <thead>
         <tr>
-            <th>Laporan Pemasukan {{ $daily }}</th>
+            <th>Laporan Pemasukan Tahun {{ $yearly }}</th>
         </tr>
     </thead>
 </table>

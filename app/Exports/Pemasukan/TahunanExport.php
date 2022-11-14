@@ -7,7 +7,7 @@ use Carbon\Carbon;
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
 
-class HarianExport implements FromView
+class TahunanExport implements FromView
 {
     protected $request;
 
@@ -17,30 +17,28 @@ class HarianExport implements FromView
     }
 
     /**
-     * Export file based filter date on view
-     * 
      * @return \Illuminate\Contracts\View\View|\Illuminate\Contracts\View\Factory
      */
     public function view(): View
     {
         $filter = $this->request;
 
-        if ($filter->has('pemasukan')) {
-            $pemasukans = Pembayaran::where('tanggal', $filter->pemasukan)
+        if ($filter->has('year')) {
+            $pemasukans = Pembayaran::whereYear('tanggal', $filter->year)
                 ->with('user', 'kontrak.penyewa', 'kontrak.jenisToko')
                 ->get();
 
-            $daily = Carbon::parse($filter->pemasukan)->translatedFormat('l d F Y');
+            $yearly = $filter->year;
         } else {
-            $pemasukans = Pembayaran::whereDate('tanggal', Carbon::today())
+            $pemasukans = Pembayaran::whereYear('tanggal', Carbon::now()->year)
                 ->with('user', 'kontrak.penyewa', 'kontrak.jenisToko')
                 ->get();
 
-            $daily = Carbon::now()->translatedFormat('l d F Y');
+            $yearly = Carbon::now()->year;
         }
 
-        return view('exports.pemasukan.harian', [
-            'daily'      => $daily,
+        return view('exports.pemasukan.tahunan', [
+            'yearly'     => $yearly,
             'pemasukans' => $pemasukans,
         ]);
     }
