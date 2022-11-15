@@ -131,6 +131,7 @@ Pembayaran
                                 <th>Tunggakan</th>
                                 <th>Tanggal</th>
                                 <th>Operator</th>
+                                <th>Aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -146,6 +147,17 @@ Pembayaran
                                 </td>
                                 <td>{{ \Carbon\Carbon::parse($kontrak->tanggal)->translatedFormat('d F Y') }}</td>
                                 <td>{{ $kontrak->user->name }}</td>
+                                <td>
+                                    <a href="{{ route('pembayaran.edit', $kontrak->id) }}"
+                                        class="btn btn-sm btn-warning" title="Edit">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+
+                                    <button type="button" class="btn btn-sm btn-danger block" data-bs-toggle="modal"
+                                        data-bs-target="#delete">
+                                        <i class="bi bi-trash3-fill"></i>
+                                    </button>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>

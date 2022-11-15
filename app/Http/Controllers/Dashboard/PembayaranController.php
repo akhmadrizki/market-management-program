@@ -21,6 +21,57 @@ class PembayaranController extends Controller
         return view('pages.dashboard.pembayaran.index', compact('penyewas', 'kontraks'));
     }
 
+    public function edit($pembayaran)
+    {
+        $kontraks  = Pembayaran::where('id', $pembayaran)->with('user', 'kontrak.penyewa', 'kontrak.jenisToko')->firstOrFail();
+
+        $penyewa   = $kontraks->kontrak->penyewa->id;
+        $jenisToko = Kontrak::where('id_penyewa', $penyewa)->with('jenisToko')->get();
+
+        return view('pages.dashboard.pembayaran.edit', compact('kontraks', 'jenisToko'));
+    }
+
+    public function update(Request $request, $pembayaran)
+    {
+        DB::beginTransaction();
+
+        try {
+            $pembayarans  = Pembayaran::find($pembayaran);
+            $kontrak = Kontrak::where('id', $pembayarans->kontrak_id)
+                ->where('id_penyewa', $request->penyewa)
+                ->first();
+
+            $reset = $pembayarans->tunggakan - ($request->dibayarkan - $pembayarans->dibayarkan);
+
+            $updateTunggakan = [
+                'tunggakan' => $reset,
+            ];
+
+            $kontrak->update($updateTunggakan);
+
+            $fields = [
+                'kontrak_id' => $pembayarans->kontrak_id,
+                'tanggal'    => $request->tanggal,
+                'biaya_sewa' => $request->biaya_sewa,
+                'dibayarkan' => $request->dibayarkan,
+                'tunggakan'  => $kontrak->tunggakan,
+            ];
+
+            $pembayarans->update($fields);
+
+            DB::commit();
+        } catch (\Exception $error) {
+            DB::rollBack();
+
+            return redirect()->route('pembayaran.index')->with('message', $error->getMessage());
+        }
+
+        return redirect()->route('pembayaran.index')->with([
+            'message' => 'Pembayaran berhasil diupdate',
+            'status'  => 'success',
+        ]);
+    }
+
     public function store(Request $request)
     {
         DB::beginTransaction();
