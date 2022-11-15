@@ -154,7 +154,7 @@ Pembayaran
                                     </a>
 
                                     <button type="button" class="btn btn-sm btn-danger block" data-bs-toggle="modal"
-                                        data-bs-target="#delete">
+                                        data-bs-target="#delete-{{ $kontrak->id }}">
                                         <i class="bi bi-trash3-fill"></i>
                                     </button>
                                 </td>
@@ -167,6 +167,43 @@ Pembayaran
         </div>
     </section>
 </div>
+@endsection
+
+@section('modal')
+@foreach ($kontraks as $kontrak)
+<div class="modal fade text-left" id="delete-{{ $kontrak->id }}" tabindex="-1" role="dialog"
+    aria-labelledby="myModalLabel4" data-bs-backdrop="false" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel4">Hapus Pembayaran Dari {{ $kontrak->kontrak->penyewa->name
+                    }}</h4>
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                    <i data-feather="x"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Apakah anda yakin ingin menghapus data pembayaran <b>{{ $kontrak->kontrak->penyewa->name }} ?</b></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+                    <i class="bx bx-x d-block d-sm-none"></i>
+                    <span class="d-none d-sm-block">Close</span>
+                </button>
+
+                <form action="{{ route('pembayaran.delete', $kontrak->id) }}" method="POST">
+                    @method('DELETE')
+                    @csrf
+                    <button type="submit" class="btn btn-primary ml-1" data-bs-dismiss="modal">
+                        <i class="bx bx-check d-block d-sm-none"></i>
+                        <span class="d-none d-sm-block">Delete</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+@endforeach
 @endsection
 
 @section('js')

@@ -172,11 +172,10 @@
       <footer>
         <div class="footer clearfix mb-0 text-muted">
           <div class="float-start">
-            <p>&copy; {{ date('Y') }}</p>
+            <p>&copy; {{ date('Y') }} | v.1.0.0</p>
           </div>
           <div class="float-end">
-            <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a
-                href="https://wa.me/6281999015508" target="_blank">hihi team</a></p>
+            <p>Crafted with 🔥 by <a href="https://wa.me/6281999015508" target="_blank">hihi team</a></p>
           </div>
         </div>
       </footer>

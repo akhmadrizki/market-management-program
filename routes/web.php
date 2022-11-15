@@ -79,6 +79,7 @@ Route::middleware(['auth'])->group(function () {
         Route::post('/pembayaran', [PembayaranController::class, 'store'])->name('pembayaran.store');
         Route::get('/pembayaran/{pembayaran}/edit', [PembayaranController::class, 'edit'])->name('pembayaran.edit');
         Route::put('/pembayaran/{pembayaran}', [PembayaranController::class, 'update'])->name('pembayaran.update');
+        Route::delete('/pembayaran/{pembayaran}/delete', [PembayaranController::class, 'destroy'])->name('pembayaran.delete');
 
         // Route Riwayat Pembayaran
         Route::get('/riwayat-pembayaran/{id}', [RiwayatPembayaranController::class, 'index'])->name('riwayat.pembayaran');

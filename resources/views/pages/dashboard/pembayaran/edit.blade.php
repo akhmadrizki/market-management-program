@@ -44,57 +44,39 @@ Edit Pembayaran
 
                             <div class="col-3">
                                 <div class="form-group">
-                                    <label for="email-id-icon">Jenis</label>
-                                    <select name="id_jenis_toko" id="jenis_toko" class="form-select">
-                                        @foreach ($jenisToko as $jenis)
-                                        <option value="{{ $jenis->jenisToko->id }}" @if($jenis->jenisToko->name ==
-                                            $kontraks->kontrak->jenisToko->name) selected @endif>
-                                            {{$jenis->jenisToko->name }}
-                                        </option>
-                                        @endforeach
-                                    </select>
+                                    <label>Jenis</label>
+                                    <input type="hidden" name="id_jenis_toko"
+                                        value="{{ $kontraks->kontrak->jenisToko->id }}">
+                                    <input type="text" class="form-control"
+                                        value="{{ $kontraks->kontrak->jenisToko->name }}" readonly>
                                 </div>
                             </div>
 
                             <div class="col-3">
                                 <div class="form-group">
-                                    <label for="email-id-icon">Jenis Sewa</label>
-                                    <select name="jenis_kontrak" id="jenis_kontrak" class="form-select">
-                                        @foreach ($jenisToko as $jenis)
-                                        <option value="{{ $jenis->jenis_kontrak }}" @if($jenis->jenis_kontrak ==
-                                            $kontraks->kontrak->jenis_kontrak) selected @endif>
-                                            {{$jenis->jenis_kontrak }}
-                                        </option>
-                                        @endforeach
-                                    </select>
+                                    <label>Jenis Sewa</label>
+                                    <input type="hidden" name="jenis_kontrak"
+                                        value="{{ $kontraks->kontrak->jenis_kontrak }}">
+                                    <input type="text" class="form-control"
+                                        value="{{ $kontraks->kontrak->jenis_kontrak }}" readonly>
                                 </div>
                             </div>
 
                             <div class="col-3">
                                 <div class="form-group">
-                                    <label for="email-id-icon">Nomor</label>
-                                    <select name="no_toko" id="nomor_toko" class="form-select">
-                                        @foreach ($jenisToko as $jenis)
-                                        <option value="{{ $jenis->no_toko }}" @if($jenis->no_toko ==
-                                            $kontraks->kontrak->no_toko) selected @endif>
-                                            {{$jenis->no_toko }}
-                                        </option>
-                                        @endforeach
-                                    </select>
+                                    <label>Nomor</label>
+                                    <input type="hidden" name="no_toko" value="{{ $kontraks->kontrak->no_toko }}">
+                                    <input type="text" class="form-control" value="{{ $kontraks->kontrak->no_toko }}"
+                                        readonly>
                                 </div>
                             </div>
 
                             <div class="col-4">
                                 <div class="form-group">
-                                    <label for="email-id-icon">Biaya Sewa</label>
-                                    <select name="biaya_sewa" id="uang_sewa" class="form-select">
-                                        @foreach ($jenisToko as $jenis)
-                                        <option value="{{ $jenis->biaya_sewa }}" @if($jenis->biaya_sewa ==
-                                            $kontraks->kontrak->biaya_sewa) selected @endif>
-                                            {{$jenis->biaya_sewa }}
-                                        </option>
-                                        @endforeach
-                                    </select>
+                                    <label>Biaya Sewa</label>
+                                    <input type="hidden" name="biaya_sewa" value="{{ $kontraks->kontrak->biaya_sewa }}">
+                                    <input type="text" class="form-control" value="{{ $kontraks->kontrak->biaya_sewa }}"
+                                        readonly>
                                 </div>
                             </div>
 

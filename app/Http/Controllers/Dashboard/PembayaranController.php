@@ -37,9 +37,7 @@ class PembayaranController extends Controller
 
         try {
             $pembayarans  = Pembayaran::find($pembayaran);
-            $kontrak = Kontrak::where('id', $pembayarans->kontrak_id)
-                ->where('id_penyewa', $request->penyewa)
-                ->first();
+            $kontrak      = Kontrak::where('id', $pembayarans->kontrak_id)->first();
 
             $reset = $pembayarans->tunggakan - ($request->dibayarkan - $pembayarans->dibayarkan);
 
@@ -123,6 +121,37 @@ class PembayaranController extends Controller
 
         return redirect()->route('pembayaran.index')->with([
             'message' => 'Pembayaran berhasil ditambahkan',
+            'status'  => 'success',
+        ]);
+    }
+
+    public function destroy($pembayaran)
+    {
+        DB::beginTransaction();
+
+        try {
+            $pembayaran = Pembayaran::where('id', $pembayaran)->first();
+
+            $kontrak = Kontrak::where('id', $pembayaran->kontrak_id)->first();
+            $reset   = $pembayaran->tunggakan + ($pembayaran->dibayarkan - $pembayaran->biaya_sewa);
+
+            $updateTunggakan = [
+                'tunggakan' => $reset,
+            ];
+
+            $kontrak->update($updateTunggakan);
+
+            $pembayaran->delete();
+
+            DB::commit();
+        } catch (\Exception $error) {
+            DB::rollBack();
+
+            return redirect()->route('pembayaran.index')->with('message', $error->getMessage());
+        }
+
+        return redirect()->route('pembayaran.index')->with([
+            'message' => 'Pembayaran berhasil dihapus',
             'status'  => 'success',
         ]);
     }
