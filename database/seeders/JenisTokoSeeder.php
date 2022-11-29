@@ -28,6 +28,10 @@ class JenisTokoSeeder extends Seeder
                 'id' => 3,
                 'name' => 'ruko',
             ],
+            [
+                'id' => 4,
+                'name' => 'garasi',
+            ],
         ]);
     }
 }

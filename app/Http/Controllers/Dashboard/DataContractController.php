@@ -33,19 +33,9 @@ class DataContractController extends Controller
         DB::beginTransaction();
 
         try {
-            $validated = $request->safe()->only(['id_penyewa', 'id_jenis_toko', 'jenis_kontrak', 'tanggal', 'biaya_sewa', 'no_toko']);
+            $kontrak = new Kontrak($request->safe(['id_penyewa', 'id_jenis_toko', 'jenis_kontrak', 'tanggal', 'biaya_sewa', 'tunggakan', 'no_toko']));
 
-            $fields = [
-                'id_penyewa'     => $validated['id_penyewa'],
-                'id_jenis_toko'  => $validated['id_jenis_toko'],
-                'jenis_kontrak'  => $validated['jenis_kontrak'],
-                'tanggal'        => $validated['tanggal'],
-                'biaya_sewa'     => $validated['biaya_sewa'],
-                'no_toko'        => $validated['no_toko'],
-                'status'         => true,
-            ];
-
-            Kontrak::create($fields);
+            $kontrak->save();
 
             DB::commit();
         } catch (\Exception $error) {
@@ -74,10 +64,9 @@ class DataContractController extends Controller
 
         try {
 
-            $data_kontrak->fill($request->safe(['id_jenis_toko', 'jenis_kontrak', 'tanggal', 'biaya_sewa', 'no_toko']));
+            $data_kontrak->fill($request->safe(['id_jenis_toko', 'jenis_kontrak', 'tanggal', 'biaya_sewa', 'tunggakan', 'no_toko']));
 
             $data_kontrak->id_penyewa = $data_kontrak->id_penyewa;
-            $data_kontrak->status     = true;
 
             $data_kontrak->save();
 

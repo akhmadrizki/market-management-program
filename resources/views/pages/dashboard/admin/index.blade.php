@@ -15,9 +15,16 @@ Data Admin
 <section class="section">
   <div class="card">
     <div class="card-header">
-      <a href="{{ route('admin-data.create') }}" class="btn btn-sm btn-primary">
-        <span>Tambah Data Admin</span>
-      </a>
+      <div class="row">
+        <div class="col-6">
+          <a href="{{ route('admin-data.create') }}" class="btn btn-sm btn-primary">
+            <span>Tambah Data Admin</span>
+          </a>
+        </div>
+        <div class="col-6">
+          <span style="float: right">Jumlah Admin Sebanyak: <b>{{ count($datas) }}</b></span>
+        </div>
+      </div>
     </div>
     <div class="card-body">
       <table class="table table-striped" id="table1">

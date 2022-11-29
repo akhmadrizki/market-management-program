@@ -23,12 +23,12 @@ Data Kontrak
       <table class="table table-striped" id="table1">
         <thead>
           <tr>
-            <th>Nama Pedagang</th>
+            <th>Nama Penyewa</th>
             <th>Jenis</th>
-            <th>Nomor Toko</th>
-            <th>Jenis Kontrak</th>
+            <th>Nomor</th>
+            <th>Jenis Sewa</th>
             <th>Biaya Sewa</th>
-            <th>Status</th>
+            <th>Tunggakan</th>
             <th>Aksi</th>
             <th></th>
           </tr>
@@ -41,8 +41,8 @@ Data Kontrak
             <td>{{ $contract->no_toko }}</td>
             <td>{{ $contract->jenis_kontrak }}</td>
             <td>Rp{{ number_format($contract->biaya_sewa, 0, ',', '.') }}</td>
-            <td>
-              <span class="badge bg-info">Active</span>
+            <td class="text-danger">
+              Rp{{ number_format($contract->tunggakan, 0, ',', '.') }}
             </td>
             <td>
               <a href="{{ route('kontrak.edit', $contract->id) }}" class="btn btn-sm btn-warning" title="Edit"><i
@@ -54,7 +54,8 @@ Data Kontrak
               </button>
             </td>
             <td>
-              <a href="#" class="btn btn-sm btn-success" title="Detail Pembayaran">Detail Pembayaran</a>
+              <a href="{{ route('riwayat.pembayaran', $contract->id) }}" class="btn btn-sm btn-success"
+                title="Detail Pembayaran">Riwayat Pembayaran</a>
             </td>
           </tr>
           @endforeach

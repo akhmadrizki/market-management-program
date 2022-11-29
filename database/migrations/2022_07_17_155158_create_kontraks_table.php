@@ -20,8 +20,8 @@ return new class extends Migration
             $table->string('jenis_kontrak');
             $table->date('tanggal');
             $table->integer('biaya_sewa');
-            $table->char('no_toko', 15);
-            $table->boolean('status')->default(true);
+            $table->integer('tunggakan')->nullable()->default(0);
+            $table->string('no_toko');
             $table->timestamps();
         });
     }

@@ -1,13 +1,13 @@
 @extends('layouts.dashboard')
 @section('title')
-Data Pedagang
+Data Penyewa
 @endsection
 
 @section('content')
 <div class="page-heading">
     <div class="row">
         <div class="col-12 col-md-6 order-md-1 order-last">
-            <h3>Data Pedagang</h3>
+            <h3>Data Penyewa</h3>
         </div>
     </div>
 </div>
@@ -15,15 +15,23 @@ Data Pedagang
 <section class="section">
     <div class="card">
         <div class="card-header">
-            <a href="{{ route('pedagang.create') }}" class="btn btn-sm btn-primary">
-                <span>Tambah Data Pedagang Baru</span>
-            </a>
+            <div class="row">
+                <div class="col-6">
+                    <a href="{{ route('pedagang.create') }}" class="btn btn-sm btn-primary">
+                        <span>Tambah Data Penyewa Baru</span>
+                    </a>
+                </div>
+                <div class="col-6">
+                    <span style="float: right">Jumlah Penyewa Sebanyak: <b>{{ count($penyewas) }}</b></span>
+                </div>
+            </div>
         </div>
+
         <div class="card-body">
             <table class="table table-striped" id="table1">
                 <thead>
                     <tr>
-                        <th>Nama Pedagang</th>
+                        <th>Nama Penyewa</th>
                         <th>Contact</th>
                         <th>Alamat</th>
                         <th>Aksi</th>

@@ -1,13 +1,13 @@
 @extends('layouts.dashboard')
 @section('title')
-Edit Data Pedagang
+Edit Data Penyewa
 @endsection
 
 @section('content')
 <div class="page-heading">
     <div class="row">
         <div class="col-12 col-md-6 order-md-1 order-last">
-            <h3>Edit Data Pedagang</h3>
+            <h3>Edit Data Penyewa</h3>
         </div>
     </div>
 </div>

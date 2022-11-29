@@ -11,138 +11,260 @@ Dashboard
     </div>
 
     <div class="col-lg-6 col-md-6 order-md-1 order-last text-end">
-      <small>{{ date('l, d-M-Y') }}</small>
+      <h6>{{ $getDateNow }}</h6>
     </div>
   </div>
 </div>
 
-<div class="page-content">
-  <section class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <div class="row">
-            <div class="col-4">
-              <div class="form-group">
-                <label for="email-id-icon">Harian</label>
-                <input type="date" class="form-control">
+<div class="col-lg-12 col-md-12">
+  <div class="card">
+    <div class="card-header">
+      <h4 class="card-title">List Pemasukan Pasar</h4>
+    </div>
+    <div class="card-content">
+      <div class="card-body">
+        <div class="list-group list-group-horizontal-sm mb-1 text-center" role="tablist">
+          <a class="list-group-item list-group-item-action active" data-bs-toggle="list" href="#harian"
+            role="tab">Harian</a>
+          <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#bulanan" role="tab">Bulanan</a>
+          <a class="list-group-item list-group-item-action" data-bs-toggle="list" href="#tahunan" role="tab">Tahunan</a>
+        </div>
+
+        <div class="tab-content text-justify">
+          <div class="tab-pane fade show active" id="harian" role="tabpanel">
+            {{-- stats session --}}
+            <div class="col-12">
+              <div class="row">
+                <div class="col-6 col-lg-3 col-md-6">
+                  <div class="card">
+                    <div class="card-body px-3 py-4-5">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h6 class="text-muted font-semibold">Pemasukan</h6>
+                          @php
+                          $uangMasuk = $pemasukanHarian->sum('biaya_sewa');
+                          @endphp
+                          <h3 class="font-extrabold mb-0 text-success">Rp{{ number_format($uangMasuk, 0, ',', '.') }}
+                          </h3>
+
+                          <a href="{{ route('pemasukan.harian') }}">Lihat Detail &rarr;</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6 col-lg-3 col-md-6">
+                  <div class="card">
+                    <div class="card-body px-3 py-4-5">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h6 class="text-muted font-semibold">Pengeluaran</h6>
+                          @php
+                          $uangKeluar = $pengeluaranHarian->sum('total');
+                          @endphp
+                          <h3 class="font-extrabold mb-0 text-danger">Rp{{ number_format($uangKeluar, 0, ',', '.') }}
+                          </h3>
+
+                          <a href="{{ route('pengeluaran.harian') }}">Lihat Detail &rarr;</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6 col-lg-3 col-md-6">
+                  <div class="card">
+                    <div class="card-body px-3 py-4-5">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h6 class="text-muted font-semibold">Jumlah Pedagang</h6>
+                          <h6 class="font-extrabold mb-0">{{ count($pedagangHarian) }}</h6>
+
+                          <a href="{{ route('pedagang.index') }}">Lihat Detail &rarr;</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6 col-lg-3 col-md-6">
+                  <div class="card">
+                    <div class="card-body px-3 py-4-5">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h6 class="text-muted font-semibold">Jumlah Admin</h6>
+                          <h6 class="font-extrabold mb-0">{{ count($adminHarian) }}</h6>
+
+                          <a href="{{ route('admin-data.index') }}">Lihat Detail &rarr;</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
+            {{-- end stats session --}}
+          </div>
 
-            <div class="col-4">
-              <div class="form-group">
-                <label for="email-id-icon">Bulanan</label>
-                <select class="form-select">
-                  <option value="none" selected disabled>- Pilih Bulan -</option>
-                  <option value="01">Januari</option>
-                  <option value="02">Februari</option>
-                  <option value="03">Maret</option>
-                  <option value="04">April</option>
-                  <option value="05">Mei</option>
-                  <option value="06">Juni</option>
-                  <option value="07">Juli</option>
-                  <option value="08">Agustus</option>
-                  <option value="09">September</option>
-                  <option value="10">Oktober</option>
-                  <option value="11">November</option>
-                  <option value="12">Desember</option>
-                </select>
+          <div class="tab-pane fade" id="bulanan" role="tabpanel">
+            {{-- stats session --}}
+            <div class="col-12">
+              <div class="row">
+                <div class="col-6 col-lg-3 col-md-6">
+                  <div class="card">
+                    <div class="card-body px-3 py-4-5">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h6 class="text-muted font-semibold">Pemasukan</h6>
+                          @php
+                          $uangMasuk = $pemasukanBulanan->sum('biaya_sewa');
+                          @endphp
+                          <h3 class="font-extrabold mb-0 text-success">Rp{{ number_format($uangMasuk, 0, ',', '.') }}
+                          </h3>
+
+                          <a href="{{ route('pemasukan.bulanan') }}">Lihat Detail &rarr;</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6 col-lg-3 col-md-6">
+                  <div class="card">
+                    <div class="card-body px-3 py-4-5">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h6 class="text-muted font-semibold">Pengeluaran</h6>
+                          @php
+                          $uangKeluar = $pengeluaranBulanan->sum('total');
+                          @endphp
+                          <h3 class="font-extrabold mb-0 text-danger">Rp{{ number_format($uangKeluar, 0, ',', '.') }}
+                          </h3>
+
+                          <a href="{{ route('pengeluaran.bulanan') }}">Lihat Detail &rarr;</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6 col-lg-3 col-md-6">
+                  <div class="card">
+                    <div class="card-body px-3 py-4-5">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h6 class="text-muted font-semibold">Jumlah Pedagang</h6>
+                          <h6 class="font-extrabold mb-0">{{ count($pedagangBulanan) }}</h6>
+
+                          <a href="{{ route('pedagang.index') }}">Lihat Detail &rarr;</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6 col-lg-3 col-md-6">
+                  <div class="card">
+                    <div class="card-body px-3 py-4-5">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h6 class="text-muted font-semibold">Jumlah Admin</h6>
+                          <h6 class="font-extrabold mb-0">{{ count($adminBulanan) }}</h6>
+
+                          <a href="{{ route('admin-data.index') }}">Lihat Detail &rarr;</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
+            {{-- end stats session --}}
+          </div>
 
-            <div class="col-4">
-              <div class="form-group">
-                <label for="email-id-icon">Tahunan</label>
-                <select class="form-select">
-                  <option value="none" selected disabled>- Pilih Tahun -</option>
-                  <option>IT</option>
-                  <option>Blade Runner</option>
-                  <option>Thor Ragnarok</option>
-                </select>
+          <div class="tab-pane fade" id="tahunan" role="tabpanel">
+            {{-- stats session --}}
+            <div class="col-12">
+              <div class="row">
+                <div class="col-6 col-lg-3 col-md-6">
+                  <div class="card">
+                    <div class="card-body px-3 py-4-5">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h6 class="text-muted font-semibold">Pemasukan</h6>
+                          @php
+                          $uangMasuk = $pemasukanTahunan->sum('biaya_sewa');
+                          @endphp
+                          <h3 class="font-extrabold mb-0 text-success">Rp{{ number_format($uangMasuk, 0, ',', '.') }}
+                          </h3>
+
+                          <a href="{{ route('pemasukan.tahunan') }}">Lihat Detail &rarr;</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6 col-lg-3 col-md-6">
+                  <div class="card">
+                    <div class="card-body px-3 py-4-5">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h6 class="text-muted font-semibold">Pengeluaran</h6>
+                          @php
+                          $uangKeluar = $pengeluaranTahunan->sum('total');
+                          @endphp
+                          <h3 class="font-extrabold mb-0 text-danger">Rp{{ number_format($uangKeluar, 0, ',', '.') }}
+                          </h3>
+
+                          <a href="{{ route('pengeluaran.tahunan') }}">Lihat Detail &rarr;</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6 col-lg-3 col-md-6">
+                  <div class="card">
+                    <div class="card-body px-3 py-4-5">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h6 class="text-muted font-semibold">Jumlah Pedagang</h6>
+                          <h6 class="font-extrabold mb-0">{{ count($pedagangTahunan) }}</h6>
+
+                          <a href="{{ route('pedagang.index') }}">Lihat Detail &rarr;</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6 col-lg-3 col-md-6">
+                  <div class="card">
+                    <div class="card-body px-3 py-4-5">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h6 class="text-muted font-semibold">Jumlah Admin</h6>
+                          <h6 class="font-extrabold mb-0">{{ count($adminTahunan) }}</h6>
+
+                          <a href="{{ route('admin-data.index') }}">Lihat Detail &rarr;</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
-
-            <div class="col-12 d-flex justify-content-center">
-              <button type="button" class="btn btn-primary me-1 mb-1">Terapkan</button>
-            </div>
-
+            {{-- end stats session --}}
           </div>
         </div>
       </div>
     </div>
-
-    <div class="col-12">
-      <div class="row">
-        <div class="col-6 col-lg-3 col-md-6">
-          <div class="card">
-            <div class="card-body px-3 py-4-5">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="stats-icon purple">
-                    <i class="iconly-boldShow"></i>
-                  </div>
-                </div>
-                <div class="col-md-8">
-                  <h6 class="text-muted font-semibold">Profile Views</h6>
-                  <h6 class="font-extrabold mb-0">112.000</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 col-lg-3 col-md-6">
-          <div class="card">
-            <div class="card-body px-3 py-4-5">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="stats-icon blue">
-                    <i class="iconly-boldProfile"></i>
-                  </div>
-                </div>
-                <div class="col-md-8">
-                  <h6 class="text-muted font-semibold">Followers</h6>
-                  <h6 class="font-extrabold mb-0">183.000</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 col-lg-3 col-md-6">
-          <div class="card">
-            <div class="card-body px-3 py-4-5">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="stats-icon green">
-                    <i class="iconly-boldAdd-User"></i>
-                  </div>
-                </div>
-                <div class="col-md-8">
-                  <h6 class="text-muted font-semibold">Following</h6>
-                  <h6 class="font-extrabold mb-0">80.000</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-6 col-lg-3 col-md-6">
-          <div class="card">
-            <div class="card-body px-3 py-4-5">
-              <div class="row">
-                <div class="col-md-4">
-                  <div class="stats-icon red">
-                    <i class="iconly-boldBookmark"></i>
-                  </div>
-                </div>
-                <div class="col-md-8">
-                  <h6 class="text-muted font-semibold">Saved Post</h6>
-                  <h6 class="font-extrabold mb-0">112</h6>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  </div>
 </div>
+
 @endsection
