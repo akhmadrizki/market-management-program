@@ -26,7 +26,16 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('master123#'),
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
-            ]
+            ],
+            [
+                'id' => 2,
+                'username' => 'developer',
+                'name' => 'himalaya digital',
+                'role_id' => 3,
+                'password' => Hash::make('iniakundev1#'),
+                'created_at' => Carbon::now()->toDateTimeString(),
+                'updated_at' => Carbon::now()->toDateTimeString(),
+            ],
         ]);
     }
 }

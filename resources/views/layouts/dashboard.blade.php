@@ -134,12 +134,14 @@
 
             <li class="sidebar-title">Admin</li>
 
+            @if (auth()->user()->role_id != 2)
             <li class="sidebar-item {{ $route == 'admin-data.index' ? 'active' : null }}">
               <a href="{{ route('admin-data.index') }}" class='sidebar-link'>
                 <i class="bi bi-person-badge-fill"></i>
                 <span>Data Admin</span>
               </a>
             </li>
+            @endif
 
             <li class="sidebar-item">
               <a href="{{ route('profile.password', Auth::user()->id) }}" class='sidebar-link text-warning'>
@@ -182,7 +184,7 @@
             <p>&copy; {{ date('Y') }} | v.1.0.0</p>
           </div>
           <div class="float-end">
-            <p>Crafted with 🔥 by <a href="https://wa.me/6281999015508" target="_blank">hihi team</a></p>
+            <p>Crafted with 🔥 by <a href="https://wa.me/6281999015508" target="_blank">himalaya digital team</a></p>
           </div>
         </div>
       </footer>
