@@ -88,6 +88,7 @@ Dashboard
                   </div>
                 </div>
 
+                @if (auth()->user()->role_id != 2)
                 <div class="col-6 col-lg-3 col-md-6">
                   <div class="card">
                     <div class="card-body px-3 py-4-5">
@@ -102,6 +103,7 @@ Dashboard
                     </div>
                   </div>
                 </div>
+                @endif
 
               </div>
             </div>
@@ -165,6 +167,7 @@ Dashboard
                   </div>
                 </div>
 
+                @if (auth()->user()->role_id != 2)
                 <div class="col-6 col-lg-3 col-md-6">
                   <div class="card">
                     <div class="card-body px-3 py-4-5">
@@ -179,6 +182,7 @@ Dashboard
                     </div>
                   </div>
                 </div>
+                @endif
 
               </div>
             </div>
@@ -242,6 +246,7 @@ Dashboard
                   </div>
                 </div>
 
+                @if (auth()->user()->role_id != 2)
                 <div class="col-6 col-lg-3 col-md-6">
                   <div class="card">
                     <div class="card-body px-3 py-4-5">
@@ -256,6 +261,7 @@ Dashboard
                     </div>
                   </div>
                 </div>
+                @endif
 
               </div>
             </div>

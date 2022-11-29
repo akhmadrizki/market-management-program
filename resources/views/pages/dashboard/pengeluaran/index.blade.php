@@ -26,6 +26,7 @@ Pengeluaran Pasar
                         <th>Keterangan</th>
                         <th>Total</th>
                         <th>Tanggal</th>
+                        <th>Operator</th>
                         <th>Aksi</th>
                     </tr>
                 </thead>
@@ -35,6 +36,7 @@ Pengeluaran Pasar
                         <td class="text-capitalize">{{ $pengeluaran->desc }}</td>
                         <td>Rp{{ number_format($pengeluaran->total, 0, ',', '.') }}</td>
                         <td>{{ \Carbon\Carbon::parse($pengeluaran->tanggal)->translatedFormat('d F Y') }}</td>
+                        <td>{{ $pengeluaran->user->name }}</td>
                         <td>
                             <a href="{{ route('pengeluaran.edit', $pengeluaran->id) }}" class="btn btn-sm btn-warning"
                                 title="Edit">

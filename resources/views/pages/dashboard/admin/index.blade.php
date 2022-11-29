@@ -44,7 +44,6 @@ Data Admin
             <td>{{ $data->address }}</td>
             <td>{{ $data->contact }}</td>
             <td>
-            <td>
               <a href="{{ route('admin-data.edit', $data->id) }}" class="btn btn-sm btn-warning" title="Edit"><i
                   class="bi bi-pencil-square"></i></a>
 
@@ -52,7 +51,6 @@ Data Admin
                 data-bs-target="#delete-{{ $data->id }}">
                 <i class="bi bi-trash3-fill"></i>
               </button>
-            </td>
             </td>
           </tr>
           @endforeach
