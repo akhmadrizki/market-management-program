@@ -268,3 +268,20 @@ Dashboard
 </div>
 
 @endsection
+
+@section('js')
+<script>
+  @if(Session::has('message'))
+  Toastify({
+        text: `{{ session('message') }}`,
+        duration: 3000,
+        close: true,
+        gravity: "top", // `top` or `bottom`
+        positionLeft: false, // `true` or `false`
+        backgroundColor: `{{ 
+            session('status') == 'success' ? 'linear-gradient(to right, #00b09b, #96c93d)' : 'linear-gradient(to right, #FF5F6D, #FFC371)' 
+          }}`,
+        }).showToast();
+  @endif
+</script>
+@endsection
