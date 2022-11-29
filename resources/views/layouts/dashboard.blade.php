@@ -142,6 +142,13 @@
             </li>
 
             <li class="sidebar-item">
+              <a href="{{ route('profile.password', Auth::user()->id) }}" class='sidebar-link text-warning'>
+                <i class="bi bi-key-fill text-warning"></i>
+                <span>Ubah Password</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
               <form action="{{ route('logout') }}" method="POST">
                 @csrf
                 <button class="btn sidebar-link logout text-white">

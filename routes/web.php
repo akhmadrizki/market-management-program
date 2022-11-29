@@ -8,6 +8,7 @@ use App\Http\Controllers\Dashboard\DataPenyewaController;
 use App\Http\Controllers\Dashboard\Export\ExportController;
 use App\Http\Controllers\Dashboard\GarageContractController;
 use App\Http\Controllers\Dashboard\JenisPasarController;
+use App\Http\Controllers\Dashboard\PasswordController;
 use App\Http\Controllers\Dashboard\Pemasukan\PemasukanBulananController;
 use App\Http\Controllers\Dashboard\Pemasukan\PemasukanHarianController;
 use App\Http\Controllers\Dashboard\Pemasukan\PemasukanTahunanController;
@@ -48,6 +49,10 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
     Route::prefix('/dashboard')->group(function () {
+        // Route Ganti Password
+        Route::get('/profile/{user}/password', [PasswordController::class, 'edit'])->name('profile.password');
+        Route::put('/profile/{user}/password', [PasswordController::class, 'update'])->name('profile.password.update');
+
         // Route Kontrak Pasar
         Route::get('/data-kontrak', [DataContractController::class, 'index'])->name('kontrak.index');
         Route::get('/data-kontrak/create', [DataContractController::class, 'create'])->name('kontrak.cerate');
