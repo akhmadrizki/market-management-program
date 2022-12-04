@@ -8,6 +8,7 @@ use App\Http\Requests\Pengeluaran\UpdateRequest;
 use App\Models\Pengeluaran;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class PengeluaranController extends Controller
@@ -46,6 +47,8 @@ class PengeluaranController extends Controller
 
         try {
             $pengeluaran = new Pengeluaran($request->validated());
+            $pengeluaran->user_id = Auth::user()->id;
+
             $pengeluaran->save();
 
             DB::commit();

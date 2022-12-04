@@ -24,6 +24,10 @@ class RoleSeeder extends Seeder
                 'id' => 2,
                 'name' => 'admin',
             ],
+            [
+                'id' => 3,
+                'name' => 'developer',
+            ],
         ]);
     }
 }
