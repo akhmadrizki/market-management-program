@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Keuangan;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Kontrak;
 use App\Models\Pembayaran;
@@ -36,8 +37,9 @@ class PembayaranController extends Controller
         DB::beginTransaction();
 
         try {
-            $pembayarans  = Pembayaran::find($pembayaran);
+            $pembayarans  = Pembayaran::with('kontrak.penyewa', 'kontrak.jenisToko')->where('id', $pembayaran)->first();
             $kontrak      = Kontrak::where('id', $pembayarans->kontrak_id)->first();
+            $keuangan     = Keuangan::where('pembayaran_id', $pembayaran)->first();
 
             $reset = $pembayarans->tunggakan - ($request->dibayarkan - $pembayarans->dibayarkan);
 
@@ -56,6 +58,16 @@ class PembayaranController extends Controller
             ];
 
             $pembayarans->update($fields);
+
+            $description = 'Pembayaran kios ' . $pembayarans->kontrak->jenisToko->name . ' ' . $pembayarans->kontrak->penyewa->name . ' ' . 'No. ' . $pembayarans->kontrak->no_toko;
+
+            $fieldsKeuangan = [
+                'tanggal' => $request->tanggal,
+                'keterangan' => $description,
+                'pemasukan' => $request->dibayarkan,
+            ];
+
+            $keuangan->update($fieldsKeuangan);
 
             DB::commit();
         } catch (\Exception $error) {
@@ -110,7 +122,23 @@ class PembayaranController extends Controller
                 'user_id'    => Auth::user()->id,
             ];
 
-            Pembayaran::create($fields);
+            $pemasukan = Pembayaran::create($fields);
+
+            $getData = Pembayaran::with('kontrak.penyewa', 'kontrak.jenisToko')
+                ->where('id', $pemasukan->id)
+                ->first();
+
+            $description = 'Pembayaran kios ' . $getData->kontrak->jenisToko->name . ' ' . $getData->kontrak->penyewa->name . ' ' . 'No. ' . $getData->kontrak->no_toko;
+
+            $fieldKeuangans = [
+                'tanggal'       => $request->tanggal,
+                'keterangan'    => $description,
+                'user_id'       => Auth::user()->id,
+                'pemasukan'     => $request->dibayarkan,
+                'pembayaran_id' => $pemasukan->id,
+            ];
+
+            Keuangan::create($fieldKeuangans);
 
             DB::commit();
         } catch (\Exception $error) {
