@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Dashboard;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Pengeluaran\StoreRequest;
 use App\Http\Requests\Pengeluaran\UpdateRequest;
+use App\Models\Keuangan;
 use App\Models\Pengeluaran;
 use Exception;
 use Illuminate\Http\Request;
@@ -50,6 +51,16 @@ class PengeluaranController extends Controller
             $pengeluaran->user_id = Auth::user()->id;
 
             $pengeluaran->save();
+
+            $fields = [
+                'tanggal'        => $pengeluaran->tanggal,
+                'keterangan'     => $pengeluaran->desc,
+                'user_id'        => Auth::user()->id,
+                'pengeluaran'    => $pengeluaran->total,
+                'pengeluaran_id' => $pengeluaran->id,
+            ];
+
+            Keuangan::create($fields);
 
             DB::commit();
         } catch (Exception $error) {
@@ -99,6 +110,16 @@ class PengeluaranController extends Controller
 
         try {
             $pengeluaran->update($request->validated());
+
+            $keuangan = Keuangan::where('pengeluaran_id', $pengeluaran->id)->first();
+
+            $fields = [
+                'tanggal'        => $pengeluaran->tanggal,
+                'keterangan'     => $pengeluaran->desc,
+                'pengeluaran'    => $pengeluaran->total,
+            ];
+
+            $keuangan->update($fields);
 
             DB::commit();
         } catch (Exception $error) {

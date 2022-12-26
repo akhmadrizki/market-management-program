@@ -18,6 +18,7 @@ use App\Http\Controllers\Dashboard\Pengeluaran\PengeluaranHarianController;
 use App\Http\Controllers\Dashboard\Pengeluaran\PengeluaranTahunanController;
 use App\Http\Controllers\Dashboard\PengeluaranController;
 use App\Http\Controllers\Dashboard\Riwayat\PembayaranController as RiwayatPembayaranController;
+use App\Http\Controllers\Dashboard\Saldo\SaldoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -60,6 +61,11 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/data-kontrak/{data_kontrak}/edit', [DataContractController::class, 'edit'])->name('kontrak.edit');
         Route::put('/data-kontrak/{data_kontrak}', [DataContractController::class, 'update'])->name('kontrak.update');
         Route::delete('/data-kontrak/{data_kontrak}/delete', [DataContractController::class, 'destroy'])->name('kontrak.destroy');
+
+        // Route Saldo
+        Route::get('/saldo-harian', [SaldoController::class, 'harian'])->name('saldo.harian');
+        Route::get('/saldo-bulanan', [SaldoController::class, 'bulanan'])->name('saldo.bulanan');
+        Route::get('/saldo-tahunan', [SaldoController::class, 'tahunan'])->name('saldo.tahunan');
 
         // Route Pemasukan
         Route::get('/pemasukan-harian', [PemasukanHarianController::class, 'index'])->name('pemasukan.harian');
