@@ -109,9 +109,16 @@
               </ul>
             </li>
 
+            <li class="sidebar-item {{ $route == 'pemasukan.index' ? 'active' : null }}">
+              <a href="{{ route('pemasukan.index') }}" class='sidebar-link'>
+                <i class="bi bi-wallet2"></i>
+                <span>Pemasukan</span>
+              </a>
+            </li>
+
             <li class="sidebar-item {{ $route == 'pengeluaran.index' ? 'active' : null }}">
               <a href="{{ route('pengeluaran.index') }}" class='sidebar-link'>
-                <i class="bi bi-wallet2"></i>
+                <i class="bi bi-wallet"></i>
                 <span>Pengeluaran</span>
               </a>
             </li>

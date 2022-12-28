@@ -12,12 +12,14 @@ use App\Http\Controllers\Dashboard\PasswordController;
 use App\Http\Controllers\Dashboard\Pemasukan\PemasukanBulananController;
 use App\Http\Controllers\Dashboard\Pemasukan\PemasukanHarianController;
 use App\Http\Controllers\Dashboard\Pemasukan\PemasukanTahunanController;
+use App\Http\Controllers\Dashboard\PemasukanController;
 use App\Http\Controllers\Dashboard\PembayaranController;
 use App\Http\Controllers\Dashboard\Pengeluaran\PengeluaranBulananController;
 use App\Http\Controllers\Dashboard\Pengeluaran\PengeluaranHarianController;
 use App\Http\Controllers\Dashboard\Pengeluaran\PengeluaranTahunanController;
 use App\Http\Controllers\Dashboard\PengeluaranController;
 use App\Http\Controllers\Dashboard\Riwayat\PembayaranController as RiwayatPembayaranController;
+use App\Http\Controllers\Dashboard\Saldo\SaldoController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,6 +63,11 @@ Route::middleware(['auth'])->group(function () {
         Route::put('/data-kontrak/{data_kontrak}', [DataContractController::class, 'update'])->name('kontrak.update');
         Route::delete('/data-kontrak/{data_kontrak}/delete', [DataContractController::class, 'destroy'])->name('kontrak.destroy');
 
+        // Route Saldo
+        Route::get('/saldo-harian', [SaldoController::class, 'harian'])->name('saldo.harian');
+        Route::get('/saldo-bulanan', [SaldoController::class, 'bulanan'])->name('saldo.bulanan');
+        Route::get('/saldo-tahunan', [SaldoController::class, 'tahunan'])->name('saldo.tahunan');
+
         // Route Pemasukan
         Route::get('/pemasukan-harian', [PemasukanHarianController::class, 'index'])->name('pemasukan.harian');
         Route::get('/pemasukan-bulanan', [PemasukanBulananController::class, 'index'])->name('pemasukan.bulanan');
@@ -88,6 +95,9 @@ Route::middleware(['auth'])->group(function () {
 
         // Route Riwayat Pembayaran
         Route::get('/riwayat-pembayaran/{id}', [RiwayatPembayaranController::class, 'index'])->name('riwayat.pembayaran');
+
+        // Route Pemasukan
+        Route::resource('/pemasukan', PemasukanController::class);
 
         // Route Pengeluaran
         Route::resource('/pengeluaran', PengeluaranController::class);

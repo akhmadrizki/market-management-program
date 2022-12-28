@@ -19,7 +19,7 @@ Dashboard
 <div class="col-lg-12 col-md-12">
   <div class="card">
     <div class="card-header">
-      <h4 class="card-title">List Pemasukan Pasar</h4>
+      <h4 class="card-title">Keuangan Pasar</h4>
     </div>
     <div class="card-content">
       <div class="card-body">
@@ -42,7 +42,7 @@ Dashboard
                         <div class="col-md-12">
                           <h6 class="text-muted font-semibold">Pemasukan</h6>
                           @php
-                          $uangMasuk = $pemasukanHarian->sum('biaya_sewa');
+                          $uangMasuk = $saldoHarian->sum('pemasukan');
                           @endphp
                           <h3 class="font-extrabold mb-0 text-success">Rp{{ number_format($uangMasuk, 0, ',', '.') }}
                           </h3>
@@ -61,12 +61,29 @@ Dashboard
                         <div class="col-md-12">
                           <h6 class="text-muted font-semibold">Pengeluaran</h6>
                           @php
-                          $uangKeluar = $pengeluaranHarian->sum('total');
+                          $uangKeluar = $saldoHarian->sum('pengeluaran');
                           @endphp
                           <h3 class="font-extrabold mb-0 text-danger">Rp{{ number_format($uangKeluar, 0, ',', '.') }}
                           </h3>
 
                           <a href="{{ route('pengeluaran.harian') }}">Lihat Detail &rarr;</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6 col-lg-3 col-md-6">
+                  <div class="card">
+                    <div class="card-body px-3 py-4-5">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h6 class="text-muted font-semibold">Saldo</h6>
+                          <h6 class="font-extrabold mb-0">
+                            Rp{{ number_format($uangMasuk - $uangKeluar, 0, ',', '.') }}
+                          </h6>
+
+                          <a href="{{ route('saldo.harian') }}">Lihat Detail &rarr;</a>
                         </div>
                       </div>
                     </div>
@@ -88,23 +105,6 @@ Dashboard
                   </div>
                 </div>
 
-                @if (auth()->user()->role_id != 2)
-                <div class="col-6 col-lg-3 col-md-6">
-                  <div class="card">
-                    <div class="card-body px-3 py-4-5">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <h6 class="text-muted font-semibold">Jumlah Admin</h6>
-                          <h6 class="font-extrabold mb-0">{{ count($adminHarian) }}</h6>
-
-                          <a href="{{ route('admin-data.index') }}">Lihat Detail &rarr;</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                @endif
-
               </div>
             </div>
             {{-- end stats session --}}
@@ -121,7 +121,7 @@ Dashboard
                         <div class="col-md-12">
                           <h6 class="text-muted font-semibold">Pemasukan</h6>
                           @php
-                          $uangMasuk = $pemasukanBulanan->sum('biaya_sewa');
+                          $uangMasuk = $saldoBulanan->sum('pemasukan');
                           @endphp
                           <h3 class="font-extrabold mb-0 text-success">Rp{{ number_format($uangMasuk, 0, ',', '.') }}
                           </h3>
@@ -140,12 +140,29 @@ Dashboard
                         <div class="col-md-12">
                           <h6 class="text-muted font-semibold">Pengeluaran</h6>
                           @php
-                          $uangKeluar = $pengeluaranBulanan->sum('total');
+                          $uangKeluar = $saldoBulanan->sum('pengeluaran');
                           @endphp
                           <h3 class="font-extrabold mb-0 text-danger">Rp{{ number_format($uangKeluar, 0, ',', '.') }}
                           </h3>
 
                           <a href="{{ route('pengeluaran.bulanan') }}">Lihat Detail &rarr;</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6 col-lg-3 col-md-6">
+                  <div class="card">
+                    <div class="card-body px-3 py-4-5">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h6 class="text-muted font-semibold">Saldo</h6>
+                          <h6 class="font-extrabold mb-0">
+                            Rp{{ number_format($uangMasuk - $uangKeluar, 0, ',', '.') }}
+                          </h6>
+
+                          <a href="{{ route('saldo.bulanan') }}">Lihat Detail &rarr;</a>
                         </div>
                       </div>
                     </div>
@@ -167,23 +184,6 @@ Dashboard
                   </div>
                 </div>
 
-                @if (auth()->user()->role_id != 2)
-                <div class="col-6 col-lg-3 col-md-6">
-                  <div class="card">
-                    <div class="card-body px-3 py-4-5">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <h6 class="text-muted font-semibold">Jumlah Admin</h6>
-                          <h6 class="font-extrabold mb-0">{{ count($adminBulanan) }}</h6>
-
-                          <a href="{{ route('admin-data.index') }}">Lihat Detail &rarr;</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                @endif
-
               </div>
             </div>
             {{-- end stats session --}}
@@ -200,7 +200,7 @@ Dashboard
                         <div class="col-md-12">
                           <h6 class="text-muted font-semibold">Pemasukan</h6>
                           @php
-                          $uangMasuk = $pemasukanTahunan->sum('biaya_sewa');
+                          $uangMasuk = $saldoTahunan->sum('pemasukan');
                           @endphp
                           <h3 class="font-extrabold mb-0 text-success">Rp{{ number_format($uangMasuk, 0, ',', '.') }}
                           </h3>
@@ -219,12 +219,29 @@ Dashboard
                         <div class="col-md-12">
                           <h6 class="text-muted font-semibold">Pengeluaran</h6>
                           @php
-                          $uangKeluar = $pengeluaranTahunan->sum('total');
+                          $uangKeluar = $saldoTahunan->sum('pengeluaran');
                           @endphp
                           <h3 class="font-extrabold mb-0 text-danger">Rp{{ number_format($uangKeluar, 0, ',', '.') }}
                           </h3>
 
                           <a href="{{ route('pengeluaran.tahunan') }}">Lihat Detail &rarr;</a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="col-6 col-lg-3 col-md-6">
+                  <div class="card">
+                    <div class="card-body px-3 py-4-5">
+                      <div class="row">
+                        <div class="col-md-12">
+                          <h6 class="text-muted font-semibold">Saldo</h6>
+                          <h6 class="font-extrabold mb-0">
+                            Rp{{ number_format($uangMasuk - $uangKeluar, 0, ',', '.') }}
+                          </h6>
+
+                          <a href="{{ route('saldo.tahunan') }}">Lihat Detail &rarr;</a>
                         </div>
                       </div>
                     </div>
@@ -245,23 +262,6 @@ Dashboard
                     </div>
                   </div>
                 </div>
-
-                @if (auth()->user()->role_id != 2)
-                <div class="col-6 col-lg-3 col-md-6">
-                  <div class="card">
-                    <div class="card-body px-3 py-4-5">
-                      <div class="row">
-                        <div class="col-md-12">
-                          <h6 class="text-muted font-semibold">Jumlah Admin</h6>
-                          <h6 class="font-extrabold mb-0">{{ count($adminTahunan) }}</h6>
-
-                          <a href="{{ route('admin-data.index') }}">Lihat Detail &rarr;</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                @endif
 
               </div>
             </div>
