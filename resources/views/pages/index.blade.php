@@ -42,7 +42,7 @@ Dashboard
                         <div class="col-md-12">
                           <h6 class="text-muted font-semibold">Pemasukan</h6>
                           @php
-                          $uangMasuk = $pemasukanHarian->sum('biaya_sewa');
+                          $uangMasuk = $saldoHarian->sum('pemasukan');
                           @endphp
                           <h3 class="font-extrabold mb-0 text-success">Rp{{ number_format($uangMasuk, 0, ',', '.') }}
                           </h3>
@@ -61,7 +61,7 @@ Dashboard
                         <div class="col-md-12">
                           <h6 class="text-muted font-semibold">Pengeluaran</h6>
                           @php
-                          $uangKeluar = $pengeluaranHarian->sum('total');
+                          $uangKeluar = $saldoHarian->sum('pengeluaran');
                           @endphp
                           <h3 class="font-extrabold mb-0 text-danger">Rp{{ number_format($uangKeluar, 0, ',', '.') }}
                           </h3>
@@ -79,7 +79,8 @@ Dashboard
                       <div class="row">
                         <div class="col-md-12">
                           <h6 class="text-muted font-semibold">Saldo</h6>
-                          <h6 class="font-extrabold mb-0">Rp{{ number_format($uangMasuk - $uangKeluar, 0, ',', '.') }}
+                          <h6 class="font-extrabold mb-0">
+                            Rp{{ number_format($uangMasuk - $uangKeluar, 0, ',', '.') }}
                           </h6>
 
                           <a href="{{ route('saldo.harian') }}">Lihat Detail &rarr;</a>
@@ -120,7 +121,7 @@ Dashboard
                         <div class="col-md-12">
                           <h6 class="text-muted font-semibold">Pemasukan</h6>
                           @php
-                          $uangMasuk = $pemasukanBulanan->sum('biaya_sewa');
+                          $uangMasuk = $saldoBulanan->sum('pemasukan');
                           @endphp
                           <h3 class="font-extrabold mb-0 text-success">Rp{{ number_format($uangMasuk, 0, ',', '.') }}
                           </h3>
@@ -139,7 +140,7 @@ Dashboard
                         <div class="col-md-12">
                           <h6 class="text-muted font-semibold">Pengeluaran</h6>
                           @php
-                          $uangKeluar = $pengeluaranBulanan->sum('total');
+                          $uangKeluar = $saldoBulanan->sum('pengeluaran');
                           @endphp
                           <h3 class="font-extrabold mb-0 text-danger">Rp{{ number_format($uangKeluar, 0, ',', '.') }}
                           </h3>
@@ -157,7 +158,8 @@ Dashboard
                       <div class="row">
                         <div class="col-md-12">
                           <h6 class="text-muted font-semibold">Saldo</h6>
-                          <h6 class="font-extrabold mb-0">Rp{{ number_format($uangMasuk - $uangKeluar, 0, ',', '.') }}
+                          <h6 class="font-extrabold mb-0">
+                            Rp{{ number_format($uangMasuk - $uangKeluar, 0, ',', '.') }}
                           </h6>
 
                           <a href="{{ route('saldo.bulanan') }}">Lihat Detail &rarr;</a>
@@ -198,7 +200,7 @@ Dashboard
                         <div class="col-md-12">
                           <h6 class="text-muted font-semibold">Pemasukan</h6>
                           @php
-                          $uangMasuk = $pemasukanTahunan->sum('biaya_sewa');
+                          $uangMasuk = $saldoTahunan->sum('pemasukan');
                           @endphp
                           <h3 class="font-extrabold mb-0 text-success">Rp{{ number_format($uangMasuk, 0, ',', '.') }}
                           </h3>
@@ -217,7 +219,7 @@ Dashboard
                         <div class="col-md-12">
                           <h6 class="text-muted font-semibold">Pengeluaran</h6>
                           @php
-                          $uangKeluar = $pengeluaranTahunan->sum('total');
+                          $uangKeluar = $saldoTahunan->sum('pengeluaran');
                           @endphp
                           <h3 class="font-extrabold mb-0 text-danger">Rp{{ number_format($uangKeluar, 0, ',', '.') }}
                           </h3>
@@ -235,7 +237,8 @@ Dashboard
                       <div class="row">
                         <div class="col-md-12">
                           <h6 class="text-muted font-semibold">Saldo</h6>
-                          <h6 class="font-extrabold mb-0">Rp{{ number_format($uangMasuk - $uangKeluar, 0, ',', '.') }}
+                          <h6 class="font-extrabold mb-0">
+                            Rp{{ number_format($uangMasuk - $uangKeluar, 0, ',', '.') }}
                           </h6>
 
                           <a href="{{ route('saldo.tahunan') }}">Lihat Detail &rarr;</a>

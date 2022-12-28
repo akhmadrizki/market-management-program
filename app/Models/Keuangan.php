@@ -16,6 +16,7 @@ class Keuangan extends Model
         'keterangan',
         'user_id',
         'pemasukan',
+        'pemasukan_id',
         'pengeluaran',
         'pengeluaran_id',
         'pembayaran_id',
@@ -49,5 +50,15 @@ class Keuangan extends Model
     public function pembayaran(): BelongsTo
     {
         return $this->belongsTo(Pembayaran::class, 'pembayaran_id');
+    }
+
+    /**
+     * Relations from the database
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function pemasukan(): BelongsTo
+    {
+        return $this->belongsTo(Pemasukan::class, 'pemasukan_id');
     }
 }

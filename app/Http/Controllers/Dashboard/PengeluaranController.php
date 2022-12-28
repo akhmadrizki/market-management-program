@@ -7,6 +7,7 @@ use App\Http\Requests\Pengeluaran\StoreRequest;
 use App\Http\Requests\Pengeluaran\UpdateRequest;
 use App\Models\Keuangan;
 use App\Models\Pengeluaran;
+use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -145,6 +146,9 @@ class PengeluaranController extends Controller
         DB::beginTransaction();
 
         try {
+            $keuangan = Keuangan::where('pengeluaran_id', $pengeluaran->id)->first();
+            $keuangan->delete();
+
             $pengeluaran->delete();
 
             DB::commit();

@@ -12,6 +12,7 @@ use App\Http\Controllers\Dashboard\PasswordController;
 use App\Http\Controllers\Dashboard\Pemasukan\PemasukanBulananController;
 use App\Http\Controllers\Dashboard\Pemasukan\PemasukanHarianController;
 use App\Http\Controllers\Dashboard\Pemasukan\PemasukanTahunanController;
+use App\Http\Controllers\Dashboard\PemasukanController;
 use App\Http\Controllers\Dashboard\PembayaranController;
 use App\Http\Controllers\Dashboard\Pengeluaran\PengeluaranBulananController;
 use App\Http\Controllers\Dashboard\Pengeluaran\PengeluaranHarianController;
@@ -94,6 +95,9 @@ Route::middleware(['auth'])->group(function () {
 
         // Route Riwayat Pembayaran
         Route::get('/riwayat-pembayaran/{id}', [RiwayatPembayaranController::class, 'index'])->name('riwayat.pembayaran');
+
+        // Route Pemasukan
+        Route::resource('/pemasukan', PemasukanController::class);
 
         // Route Pengeluaran
         Route::resource('/pengeluaran', PengeluaranController::class);

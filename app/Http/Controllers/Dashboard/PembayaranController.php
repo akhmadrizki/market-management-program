@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Kontrak;
 use App\Models\Pembayaran;
 use App\Models\Penyewa;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -163,12 +164,15 @@ class PembayaranController extends Controller
             $kontrak = Kontrak::where('id', $pembayaran->kontrak_id)->first();
             $reset   = $pembayaran->tunggakan + ($pembayaran->dibayarkan - $pembayaran->biaya_sewa);
 
+            $keuangan = Keuangan::where('pembayaran_id', $pembayaran)->first();
+
             $updateTunggakan = [
                 'tunggakan' => $reset,
             ];
 
             $kontrak->update($updateTunggakan);
 
+            $keuangan->delete();
             $pembayaran->delete();
 
             DB::commit();
