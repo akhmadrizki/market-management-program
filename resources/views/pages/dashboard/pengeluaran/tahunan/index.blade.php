@@ -85,12 +85,7 @@ Pengeluaran Tahunan
                             <h4>Data Pengeluaran</h4>
                         </div>
                         <div class="col-6">
-                            <a href="{{ route('laporan.pengeluaran') }}" class="btn btn-sm btn-secondary"
-                                style="float: right">
-                                <span>Unduh Seluruh Laporan</span>
-                            </a>
-
-                            <a href="{{ route('laporan-pengeluaran.tahunan', $request->query()) }}"
+                            <a href="{{ route('laporan-saldo.tahunan', $request->query()) }}"
                                 class="btn btn-sm btn-success" style="float: right; margin-right: 8px">
                                 <span>Unduh Laporan Tahunan</span>
                             </a>
@@ -122,7 +117,7 @@ Pengeluaran Tahunan
                                 @php
                                 $uangKeluar = $pengeluarans->sum('total');
                                 @endphp
-                                <th colspan="2" style="text-align: right">
+                                <th colspan="3" style="text-align: right">
                                     Rp{{ number_format($uangKeluar, 0, ',', '.') }}
                                 </th>
                             </tr>

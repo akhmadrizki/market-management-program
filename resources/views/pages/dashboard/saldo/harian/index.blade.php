@@ -24,8 +24,8 @@ Laporan Keuangan Harian
                 <div class="card-body">
                     <form action="" method="GET">
                         <label for="email-id-icon">Harian</label>
-                        <input name="pengeluaran"
-                            value="{{ request()->query('pengeluaran') == '' ? date('Y-m-d') : request()->query('pengeluaran') }}"
+                        <input name="saldo"
+                            value="{{ request()->query('saldo') == '' ? date('Y-m-d') : request()->query('saldo') }}"
                             type="date" class="form-control mb-3">
 
                         <div class="col-12 d-flex justify-content-center">
@@ -44,14 +44,9 @@ Laporan Keuangan Harian
                             <h4>Data Keuangan</h4>
                         </div>
                         <div class="col-6">
-                            <a href="{{ route('laporan.pemasukan') }}" class="btn btn-sm btn-secondary"
-                                style="float: right">
-                                <span>Unduh Seluruh Laporan Bulanan</span>
-                            </a>
-
-                            <a href="{{ route('laporan-pemasukan.bulanan', $request->query()) }}"
+                            <a href="{{ route('laporan-saldo.harian', $request->query()) }}"
                                 class="btn btn-sm btn-success" style="float: right; margin-right: 8px">
-                                <span>Unduh Laporan Bulanan</span>
+                                <span>Unduh Laporan Harian</span>
                             </a>
                         </div>
                     </div>
