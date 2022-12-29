@@ -85,14 +85,10 @@ Laporan Keuangan Tahunan
                             <h4>Data Keuangan</h4>
                         </div>
                         <div class="col-6">
-                            <a href="{{ route('laporan.pemasukan') }}" class="btn btn-sm btn-secondary"
-                                style="float: right">
-                                <span>Unduh Seluruh Laporan Bulanan</span>
-                            </a>
 
-                            <a href="{{ route('laporan-pemasukan.bulanan', $request->query()) }}"
+                            <a href="{{ route('laporan-saldo.tahunan', $request->query()) }}"
                                 class="btn btn-sm btn-success" style="float: right; margin-right: 8px">
-                                <span>Unduh Laporan Bulanan</span>
+                                <span>Unduh Laporan Tahunan</span>
                             </a>
                         </div>
                     </div>
