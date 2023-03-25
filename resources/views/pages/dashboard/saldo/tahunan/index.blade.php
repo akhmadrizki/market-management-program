@@ -1,13 +1,13 @@
 @extends('layouts.dashboard')
 @section('title')
-Pemasukan Tahunan
+Laporan Keuangan Tahunan
 @endsection
 
 @section('content')
 <div class="page-heading">
     <div class="row">
         <div class="col-12 col-md-6">
-            <h3>Pemasukan Tahunan</h3>
+            <h3>Laporan Keuangan Tahunan</h3>
         </div>
 
         <div class="col-6 col-md-6">
@@ -82,9 +82,10 @@ Pemasukan Tahunan
                 <div class="card-header">
                     <div class="row">
                         <div class="col-6">
-                            <h4>Data Pembayaran</h4>
+                            <h4>Data Keuangan</h4>
                         </div>
                         <div class="col-6">
+
                             <a href="{{ route('laporan-saldo.tahunan', $request->query()) }}"
                                 class="btn btn-sm btn-success" style="float: right; margin-right: 8px">
                                 <span>Unduh Laporan Tahunan</span>
@@ -97,36 +98,43 @@ Pemasukan Tahunan
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
-                                <th>Nama Penyewa</th>
-                                <th>Jenis</th>
-                                <th>Nomor</th>
-                                <th>Jenis Sewa</th>
-                                <th>Biaya Sewa</th>
-                                <th>Dibayarkan</th>
-                                <th>Tanggal</th>
-                                <th>Operator</th>
+                                <th>No</th>
+                                <th>Bulan</th>
+                                <th style="background-color: #baf7b1;">Pemasukan</th>
+                                <th style="background-color: #dc354561">Pengeluaran</th>
+                                <th style="background-color: #435ebe69">Saldo</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($pemasukans as $pemasukan)
+                            @foreach ($final as $keuangan)
                             <tr>
-                                <td>{{ $pemasukan->kontrak->penyewa->name }}</td>
-                                <td>{{ $pemasukan->kontrak->jenisToko->name }}</td>
-                                <td>{{ $pemasukan->kontrak->no_toko }}</td>
-                                <td>{{ $pemasukan->kontrak->jenis_kontrak }}</td>
-                                <td>Rp{{ number_format($pemasukan->biaya_sewa, 0, ',', '.') }}</td>
-                                <td>Rp{{ number_format($pemasukan->dibayarkan, 0, ',', '.') }}</td>
-                                <td>{{ \Carbon\Carbon::parse($pemasukan->tanggal)->translatedFormat('d F Y') }}</td>
-                                <td>{{ $pemasukan->user->name }}</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $keuangan->tanggal }}</td>
+                                <td class="text-success" style="background-color: #baf7b1">
+                                    Rp{{number_format($keuangan->pemasukan, 0, ',', '.') }}
+                                </td>
+                                <td class="text-danger" style="background-color: #dc354561">
+                                    Rp{{ number_format($keuangan->pengeluaran, 0, ',', '.') }}
+                                </td>
+                                <td style="background-color: #435ebe69">
+                                    Rp{{ number_format($keuangan->saldo, 0, ',', '.') }}
+                                </td>
                             </tr>
                             @endforeach
                             <tr>
-                                <th>Total Pemasukan</th>
-                                @php
-                                $uangMasuk = $pemasukans->sum('dibayarkan');
-                                @endphp
-                                <th colspan="7" style="text-align: right">
+                                <th colspan="2" class="text-success">Total</th>
+                                <th class="text-success" style="background-color: #baf7b1">
                                     Rp{{ number_format($uangMasuk, 0, ',', '.') }}
+                                </th>
+                                <th class="text-danger" style="background-color: #dc354561">
+                                    Rp{{ number_format($uangKeluar, 0, ',', '.') }}
+                                </th>
+                                <th class="text-dark" style="background-color: #435ebe69">
+                                    @if (!$totalSaldo)
+                                    Rp0
+                                    @else
+                                    Rp{{ number_format($totalSaldo, 0, ',', '.') }}
+                                    @endif
                                 </th>
                             </tr>
                         </tbody>

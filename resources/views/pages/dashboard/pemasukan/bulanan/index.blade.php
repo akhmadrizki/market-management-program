@@ -65,15 +65,7 @@ Pemasukan Bulanan
                             </div>
 
                             <div class="col-6">
-                                <select name="year" id="year" class="form-control">
-                                    @php
-                                    $year = date('Y');
-                                    @endphp
-
-                                    @for ($i = $year; $i <= $year + 10; $i++) <option value="{{ $i }}">{{ $i }}</option>
-                                        @endfor
-
-                                </select>
+                                <input type="text" name="year" class="form-control" placeholder="Tahun. Contoh: 2022" value="{{ request()->query('year') }}">
                             </div>
                         </div>
 
@@ -93,12 +85,7 @@ Pemasukan Bulanan
                             <h4>Data Pembayaran</h4>
                         </div>
                         <div class="col-6">
-                            <a href="{{ route('laporan.pemasukan') }}" class="btn btn-sm btn-secondary"
-                                style="float: right">
-                                <span>Unduh Seluruh Laporan Bulanan</span>
-                            </a>
-
-                            <a href="{{ route('laporan-pemasukan.bulanan', $request->query()) }}"
+                            <a href="{{ route('laporan-saldo.bulanan', $request->query()) }}"
                                 class="btn btn-sm btn-success" style="float: right; margin-right: 8px">
                                 <span>Unduh Laporan Bulanan</span>
                             </a>

@@ -1,13 +1,13 @@
 @extends('layouts.dashboard')
 @section('title')
-Pengeluaran Bulanan
+Laporan Keuangan Bulanan
 @endsection
 
 @section('content')
 <div class="page-heading">
     <div class="row">
         <div class="col-12 col-md-6">
-            <h3>Pengeluaran Bulanan</h3>
+            <h3>Laporan Keuangan Bulanan</h3>
         </div>
 
         <div class="col-6 col-md-6">
@@ -82,7 +82,7 @@ Pengeluaran Bulanan
                 <div class="card-header">
                     <div class="row">
                         <div class="col-6">
-                            <h4>Data Pengeluaran</h4>
+                            <h4>Data Keuangan</h4>
                         </div>
                         <div class="col-6">
                             <a href="{{ route('laporan-saldo.bulanan', $request->query()) }}"
@@ -97,28 +97,47 @@ Pengeluaran Bulanan
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
-                                <th>Keterangan</th>
+                                <th>No</th>
                                 <th>Tanggal</th>
+                                <th>Keterangan</th>
                                 <th>Operator</th>
-                                <th>Total</th>
+                                <th style="background-color: #baf7b1;">Pemasukan</th>
+                                <th style="background-color: #dc354561">Pengeluaran</th>
+                                <th style="background-color: #435ebe69">Saldo</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($pengeluarans as $pengeluaran)
+                            @foreach ($final as $keuangan)
                             <tr>
-                                <td class="text-capitalize">{{ $pengeluaran->desc }}</td>
-                                <td>{{ \Carbon\Carbon::parse($pengeluaran->tanggal)->translatedFormat('d F Y') }}</td>
-                                <td>{{ $pengeluaran->user->name }}</td>
-                                <td>Rp{{ number_format($pengeluaran->total, 0, ',', '.') }}</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ \Carbon\Carbon::parse($keuangan->tanggal)->translatedFormat('d F Y') }}</td>
+                                <td>{{ $keuangan->keterangan }}</td>
+                                <td>{{ $keuangan->operator }}</td>
+                                <td class="text-success" style="background-color: #baf7b1">
+                                    Rp{{number_format($keuangan->pemasukan, 0, ',', '.') }}
+                                </td>
+                                <td class="text-danger" style="background-color: #dc354561">
+                                    Rp{{ number_format($keuangan->pengeluaran, 0, ',', '.') }}
+                                </td>
+                                <td style="background-color: #435ebe69">
+                                    Rp{{ number_format($keuangan->saldo, 0, ',', '.') }}
+                                </td>
                             </tr>
                             @endforeach
                             <tr>
-                                <th>Total Pengeluaran</th>
-                                @php
-                                $uangKeluar = $pengeluarans->sum('total');
-                                @endphp
-                                <th colspan="3" style="text-align: right">
+                                <th colspan="4" class="text-success">Total</th>
+                                <th class="text-success" style="background-color: #baf7b1">
+                                    Rp{{ number_format($uangMasuk, 0, ',', '.') }}
+                                </th>
+                                <th class="text-danger" style="background-color: #dc354561">
                                     Rp{{ number_format($uangKeluar, 0, ',', '.') }}
+                                </th>
+                                <th class="text-dark" style="background-color: #435ebe69">
+                                    @if (!$totalSaldo)
+                                    Rp0
+                                    @else
+                                    Rp{{ number_format($totalSaldo, 0, ',', '.') }}
+                                    @endif
                                 </th>
                             </tr>
                         </tbody>

@@ -40,7 +40,7 @@
         <div class="sidebar-header position-relative">
           <div class="align-items-center text-center">
             <div class="logo">
-              <a href="index.html">
+              <a href="/dashboard">
                 <h5>Pasar Kelan Management System</h5>
               </a>
             </div>
@@ -109,10 +109,33 @@
               </ul>
             </li>
 
+            <li class="sidebar-item {{ $route == 'pemasukan.index' ? 'active' : null }}">
+              <a href="{{ route('pemasukan.index') }}" class='sidebar-link'>
+                <i class="bi bi-wallet2"></i>
+                <span>Pemasukan</span>
+              </a>
+            </li>
+
             <li class="sidebar-item {{ $route == 'pengeluaran.index' ? 'active' : null }}">
               <a href="{{ route('pengeluaran.index') }}" class='sidebar-link'>
-                <i class="bi bi-wallet2"></i>
+                <i class="bi bi-wallet"></i>
                 <span>Pengeluaran</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a href="https://docs.google.com/document/d/1xWy74HVe3LFYMfcia2s1Z1Hc2HwTnWqY/edit?usp=share_link&ouid=113163458957544338651&rtpof=true&sd=true"
+                target="_blank" class='sidebar-link'>
+                <i class="bi bi-file-earmark-text"></i>
+                <span>Unduh Template Invoice</span>
+              </a>
+            </li>
+
+            <li class="sidebar-item">
+              <a href="https://docs.google.com/document/d/1rZAYC78_QkhnIF7SczA9qrpUJn_-ck5Y/edit?usp=share_link&ouid=113163458957544338651&rtpof=true&sd=true"
+                target="_blank" class='sidebar-link'>
+                <i class="bi bi-file-earmark-check"></i>
+                <span>Unduh Template Bukti Pembayaran</span>
               </a>
             </li>
 
