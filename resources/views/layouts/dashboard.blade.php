@@ -40,7 +40,7 @@
         <div class="sidebar-header position-relative">
           <div class="align-items-center text-center">
             <div class="logo">
-              <a href="index.html">
+              <a href="/dashboard">
                 <h5>Pasar Kelan Management System</h5>
               </a>
             </div>

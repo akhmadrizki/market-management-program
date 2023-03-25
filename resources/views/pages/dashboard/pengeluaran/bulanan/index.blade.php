@@ -65,15 +65,7 @@ Pengeluaran Bulanan
                             </div>
 
                             <div class="col-6">
-                                <select name="year" id="year" class="form-control">
-                                    @php
-                                    $year = date('Y');
-                                    @endphp
-
-                                    @for ($i = $year; $i <= $year + 10; $i++) <option value="{{ $i }}">{{ $i }}</option>
-                                        @endfor
-
-                                </select>
+                                <input type="text" name="year" class="form-control" placeholder="Tahun. Contoh: 2022" value="{{ request()->query('year') }}">
                             </div>
                         </div>
 
