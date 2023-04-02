@@ -103,7 +103,7 @@ Ubah Data Kontrak
 
                         <div class="col-4">
                             <div class="form-group">
-                                <label>Nomor</label>
+                                <label>Nomor <code>*kosongkan jika tidak ada</code></label>
                                 <input type="text" name="no_toko" value="{{ $data_kontrak->no_toko }}"
                                     class="form-control @error('no_toko') is-invalid @enderror">
 

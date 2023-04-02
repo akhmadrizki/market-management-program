@@ -97,35 +97,26 @@ Pemasukan Bulanan
                     <table class="table table-striped" id="table1">
                         <thead>
                             <tr>
-                                <th>Nama Penyewa</th>
-                                <th>Jenis</th>
-                                <th>Nomor</th>
-                                <th>Jenis Sewa</th>
-                                <th>Biaya Sewa</th>
-                                <th>Dibayarkan</th>
+                                <th>No.</th>
                                 <th>Tanggal</th>
+                                <th>Keterangan</th>
                                 <th>Operator</th>
+                                <th>Pemasukan</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($pemasukans as $pemasukan)
+                            @foreach ($final as $keuangan)
                             <tr>
-                                <td>{{ $pemasukan->kontrak->penyewa->name }}</td>
-                                <td>{{ $pemasukan->kontrak->jenisToko->name }}</td>
-                                <td>{{ $pemasukan->kontrak->no_toko }}</td>
-                                <td>{{ $pemasukan->kontrak->jenis_kontrak }}</td>
-                                <td>Rp{{ number_format($pemasukan->biaya_sewa, 0, ',', '.') }}</td>
-                                <td>Rp{{ number_format($pemasukan->dibayarkan, 0, ',', '.') }}</td>
-                                <td>{{ \Carbon\Carbon::parse($pemasukan->tanggal)->translatedFormat('d F Y') }}</td>
-                                <td>{{ $pemasukan->user->name }}</td>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ \Carbon\Carbon::parse($keuangan->tanggal)->translatedFormat('d F Y') }}</td>
+                                <td>{{ $keuangan->keterangan }}</td>
+                                <td>{{ $keuangan->operator }}</td>
+                                <td>Rp{{ number_format($keuangan->pemasukan, 0, ',', '.') }}</td>
                             </tr>
                             @endforeach
                             <tr>
                                 <th>Total Pemasukan</th>
-                                @php
-                                $uangMasuk = $pemasukans->sum('dibayarkan');
-                                @endphp
-                                <th colspan="7" style="text-align: right">
+                                <th colspan="4" style="text-align: right">
                                     Rp{{ number_format($uangMasuk, 0, ',', '.') }}
                                 </th>
                             </tr>

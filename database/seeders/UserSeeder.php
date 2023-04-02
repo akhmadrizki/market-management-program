@@ -32,7 +32,7 @@ class UserSeeder extends Seeder
                 'username' => 'developer',
                 'name' => 'himalaya digital',
                 'role_id' => 3,
-                'password' => Hash::make('iniakundev1#'),
+                'password' => Hash::make('himalaya!@#$%'),
                 'created_at' => Carbon::now()->toDateTimeString(),
                 'updated_at' => Carbon::now()->toDateTimeString(),
             ],
