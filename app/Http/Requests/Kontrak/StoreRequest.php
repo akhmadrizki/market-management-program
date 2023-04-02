@@ -30,7 +30,6 @@ class StoreRequest extends FormRequest
             'tanggal'       => 'required',
             'biaya_sewa'    => 'required|numeric|min:3',
             'tunggakan'     => 'nullable|numeric|min:3',
-            'no_toko'       => 'required',
         ];
     }
 
@@ -47,7 +46,6 @@ class StoreRequest extends FormRequest
             'jenis_kontrak.required' => 'Jenis kontrak tidak boleh kosong',
             'tanggal.required'       => 'Tanggal tidak boleh kosong',
             'biaya_sewa.required'    => 'Biaya sewa tidak boleh kosong',
-            'no_toko.required'       => 'Nomor toko tidak boleh kosong',
         ];
     }
 }

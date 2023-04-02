@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Dashboard\Pemasukan;
 
 use App\Exports\Pemasukan\BulananExport;
 use App\Http\Controllers\Controller;
-use App\Models\Pembayaran;
+use App\Models\Keuangan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Maatwebsite\Excel\Facades\Excel;
@@ -13,19 +13,45 @@ class PemasukanBulananController extends Controller
 {
     public function index(Request $request)
     {
+        $keuangans = Keuangan::with('user')->whereDoesntHave('pengeluaran')->orderBy('tanggal', 'asc');
+
         if ($request->has('month')) {
-            $pemasukans = Pembayaran::whereMonth('tanggal', $request->month)
-                ->whereYear('tanggal', $request->year)
-                ->with('user', 'kontrak.penyewa', 'kontrak.jenisToko')
-                ->get();
+            $keuangans = $keuangans->whereMonth('tanggal', $request->month);
         } else {
-            $pemasukans = Pembayaran::whereMonth('tanggal', Carbon::now()->month)
-                ->whereYear('tanggal', Carbon::now()->year)
-                ->with('user', 'kontrak.penyewa', 'kontrak.jenisToko')
-                ->get();
+            $keuangans = $keuangans->whereMonth('tanggal', Carbon::now()->month);
         }
 
-        return view('pages.dashboard.pemasukan.bulanan.index', compact('pemasukans', 'request'));
+        if ($request->has('year')) {
+            $keuangans = $keuangans->whereYear('tanggal', $request->year);
+        } else {
+            $keuangans = $keuangans->whereYear('tanggal', Carbon::now()->year);
+        }
+
+        $keuangans = $keuangans->get();
+
+        $saldoTest = 0;
+
+        $final = [];
+
+        foreach ($keuangans as $key) {
+            $a = $key->pemasukan;
+
+            $saldoTest = $saldoTest + $key->pemasukan;
+
+            $final[] = (object) [
+                'keterangan' => $key->keterangan,
+                'tanggal' => $key->tanggal,
+                'operator' => $key->user->name,
+                'pemasukan' => $key->pemasukan,
+                'saldo' => $saldoTest,
+            ];
+        }
+
+        $uangMasuk  = $keuangans->sum('pemasukan');
+        $uangKeluar = $keuangans->sum('pengeluaran');
+        $totalSaldo = $uangMasuk - $uangKeluar;
+
+        return view('pages.dashboard.pemasukan.bulanan.index', compact('final', 'keuangans', 'request', 'uangMasuk', 'uangKeluar', 'totalSaldo'));
     }
 
     public function export(Request $request)

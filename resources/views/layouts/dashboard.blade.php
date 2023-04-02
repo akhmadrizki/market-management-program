@@ -124,7 +124,7 @@
             </li>
 
             <li class="sidebar-item">
-              <a href="https://docs.google.com/document/d/1xWy74HVe3LFYMfcia2s1Z1Hc2HwTnWqY/edit?usp=share_link&ouid=113163458957544338651&rtpof=true&sd=true"
+              <a href="https://docs.google.com/document/d/1xWy74HVe3LFYMfcia2s1Z1Hc2HwTnWqY/edit?usp=sharing&ouid=113163458957544338651&rtpof=true&sd=true"
                 target="_blank" class='sidebar-link'>
                 <i class="bi bi-file-earmark-text"></i>
                 <span>Unduh Template Invoice</span>
@@ -132,7 +132,7 @@
             </li>
 
             <li class="sidebar-item">
-              <a href="https://docs.google.com/document/d/1rZAYC78_QkhnIF7SczA9qrpUJn_-ck5Y/edit?usp=share_link&ouid=113163458957544338651&rtpof=true&sd=true"
+              <a href="https://docs.google.com/document/d/1rZAYC78_QkhnIF7SczA9qrpUJn_-ck5Y/edit?usp=sharing&ouid=113163458957544338651&rtpof=true&sd=true"
                 target="_blank" class='sidebar-link'>
                 <i class="bi bi-file-earmark-check"></i>
                 <span>Unduh Template Bukti Pembayaran</span>
