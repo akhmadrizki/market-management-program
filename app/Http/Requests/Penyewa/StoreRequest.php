@@ -26,7 +26,7 @@ class StoreRequest extends FormRequest
         return [
             'name'     => 'required|min:3|unique:penyewas',
             'contact'  => 'required|regex:/^([0-9\s\(\)]*)$/',
-            'address'  => 'required|min:4',
+            'address'  => 'nullable|min:4',
         ];
     }
 
