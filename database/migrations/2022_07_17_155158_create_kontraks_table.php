@@ -21,7 +21,7 @@ return new class extends Migration
             $table->date('tanggal');
             $table->integer('biaya_sewa');
             $table->integer('tunggakan')->nullable()->default(0);
-            $table->string('no_toko')->nullable()->default(null);
+            $table->string('no_toko')->nullable()->default(0);
             $table->timestamps();
         });
     }
