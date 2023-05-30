@@ -30,6 +30,7 @@ class StoreRequest extends FormRequest
             'tanggal'       => 'required',
             'biaya_sewa'    => 'required|numeric|min:3',
             'tunggakan'     => 'nullable|numeric|min:3',
+            'no_toko'       => 'nullable',
         ];
     }
 
