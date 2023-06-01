@@ -71,7 +71,7 @@ Edit Pembayaran
                                 </div>
                             </div>
 
-                            <div class="col-4">
+                            <div class="col-3">
                                 <div class="form-group">
                                     <label>Biaya Sewa</label>
                                     <input type="hidden" name="biaya_sewa" value="{{ $kontraks->kontrak->biaya_sewa }}">
@@ -80,7 +80,20 @@ Edit Pembayaran
                                 </div>
                             </div>
 
-                            <div class="col-4">
+                            <div class="col-3">
+                                <div class="form-group has-icon-left">
+                                    <label for="tunggakan">Tunggakan</label>
+                                    <div class="position-relative">
+                                        <input type="number" value="{{ $kontraks->kontrak->tunggakan }}" name="tunggakan"
+                                            min="0" class="form-control" placeholder="0" id="tunggakan" required>
+                                        <div class="form-control-icon">
+                                            <span>Rp</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="col-3">
                                 <div class="form-group has-icon-left">
                                     <label for="dibayarkan">Dibayarkan</label>
                                     <div class="position-relative">
@@ -93,7 +106,7 @@ Edit Pembayaran
                                 </div>
                             </div>
 
-                            <div class="col-4">
+                            <div class="col-3">
                                 <div class="form-group">
                                     <label for="tanggal">Tanggal</label>
                                     <input type="date" name="tanggal" value="{{ $kontraks->tanggal }}"

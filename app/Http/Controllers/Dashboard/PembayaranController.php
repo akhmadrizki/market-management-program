@@ -42,7 +42,11 @@ class PembayaranController extends Controller
             $kontrak      = Kontrak::where('id', $pembayarans->kontrak_id)->first();
             $keuangan     = Keuangan::where('pembayaran_id', $pembayaran)->first();
 
-            $reset = $pembayarans->tunggakan - ($request->dibayarkan - $pembayarans->dibayarkan);
+            if ($pembayarans->tunggakan === $request->tunggakan) {
+                $reset = $pembayarans->tunggakan - ($request->dibayarkan - $pembayarans->dibayarkan);
+            } else {
+                $reset = $request->tunggakan;
+            }
 
             $updateTunggakan = [
                 'tunggakan' => $reset,
@@ -90,7 +94,6 @@ class PembayaranController extends Controller
         try {
             $getDataKontrak = Kontrak::where('id_penyewa', $request->id_penyewa)
                 ->where('id_jenis_toko', $request->id_jenis_toko)
-                ->where('no_toko', $request->no_toko)
                 ->first();
 
             if ($request->dibayarkan < $getDataKontrak->biaya_sewa) {
@@ -109,6 +112,21 @@ class PembayaranController extends Controller
 
                 $updateTunggakan = [
                     'tunggakan' => $getDataKontrak->tunggakan - $bayarKontrak,
+                ];
+
+                $getDataKontrak->update($updateTunggakan);
+            }
+
+            $getYearAndMonthOfContract = Carbon::parse($getDataKontrak->tanggal)->format('Ym');
+            $getYearAndMonthOfPayment  = Carbon::parse($request->tanggal)->format('Ym');
+
+            $getMonthOfContract = Carbon::parse($getDataKontrak->tanggal)->format('mY');
+            $getMonthOfPayment  = Carbon::parse($request->tanggal)->format('mY');
+
+            if ($getYearAndMonthOfPayment < $getYearAndMonthOfContract || $getMonthOfPayment < $getMonthOfContract) {
+
+                $updateTunggakan = [
+                    'tunggakan' => $getDataKontrak->tunggakan - $request->dibayarkan,
                 ];
 
                 $getDataKontrak->update($updateTunggakan);
@@ -159,12 +177,12 @@ class PembayaranController extends Controller
         DB::beginTransaction();
 
         try {
-            $pembayaran = Pembayaran::where('id', $pembayaran)->first();
+            $pembayaran = Pembayaran::where('id', $pembayaran->id)->first();
 
             $kontrak = Kontrak::where('id', $pembayaran->kontrak_id)->first();
             $reset   = $pembayaran->tunggakan + ($pembayaran->dibayarkan - $pembayaran->biaya_sewa);
 
-            $keuangan = Keuangan::where('pembayaran_id', $pembayaran)->first();
+            $keuangan = Keuangan::where('pembayaran_id', $pembayaran->id)->first();
 
             $updateTunggakan = [
                 'tunggakan' => $reset,
