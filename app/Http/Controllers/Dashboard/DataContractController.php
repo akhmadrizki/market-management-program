@@ -35,8 +35,6 @@ class DataContractController extends Controller
         try {
             $kontrak = new Kontrak($request->safe(['id_penyewa', 'id_jenis_toko', 'jenis_kontrak', 'tanggal', 'biaya_sewa', 'tunggakan', 'no_toko']));
 
-            $kontrak->no_toko = $request->no_toko ?? 0;
-
             $kontrak->save();
 
             DB::commit();
