@@ -24,6 +24,7 @@ Data Kontrak
         <thead>
           <tr>
             <th>Nama Penyewa</th>
+            <th>Tanggal</th>
             <th>Jenis</th>
             <th>Nomor</th>
             <th>Jenis Sewa</th>
@@ -37,6 +38,7 @@ Data Kontrak
           @foreach ($contracts as $contract)
           <tr>
             <td>{{ $contract->penyewa->name }}</td>
+            <td>{{ \Carbon\Carbon::parse($contract->tanggal)->translatedFormat('d F Y') }}</td>
             <td>{{ $contract->jenisToko->name }}</td>
             <td>{{ $contract->no_toko }}</td>
             <td>{{ $contract->jenis_kontrak }}</td>
@@ -112,8 +114,8 @@ Data Kontrak
             close: true,
             gravity: "top", // `top` or `bottom`
             positionLeft: false, // `true` or `false`
-            backgroundColor: `{{ 
-                    session('status') == 'success' ? 'linear-gradient(to right, #00b09b, #96c93d)' : 'linear-gradient(to right, #FF5F6D, #FFC371)' 
+            backgroundColor: `{{
+                    session('status') == 'success' ? 'linear-gradient(to right, #00b09b, #96c93d)' : 'linear-gradient(to right, #FF5F6D, #FFC371)'
                 }}`,
             }).showToast();
     @endif
