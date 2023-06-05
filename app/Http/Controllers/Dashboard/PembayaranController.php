@@ -172,12 +172,17 @@ class PembayaranController extends Controller
         ]);
     }
 
-    public function destroy($pembayaran)
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  \App\Models\Pembayaran  $pembayaran
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function destroy(Pembayaran $pembayaran)
     {
         DB::beginTransaction();
 
         try {
-            $pembayaran = Pembayaran::where('id', $pembayaran->id)->first();
 
             $kontrak = Kontrak::where('id', $pembayaran->kontrak_id)->first();
             $reset   = $pembayaran->tunggakan + ($pembayaran->dibayarkan - $pembayaran->biaya_sewa);
